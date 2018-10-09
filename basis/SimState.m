@@ -2,7 +2,7 @@ classdef SimState
     %SIMSTATE Enumerated list of allowable simulation states
     
     enumeration
-        INITIALIZED
+        INSTANTIATED
         CONFIGURED
         COMPLETED
         LOGS_GENERATED
