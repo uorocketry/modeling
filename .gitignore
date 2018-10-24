@@ -3,6 +3,5 @@
 *.log
 *.asv
 *.r2016a
-*.slx
 *.orig
 slprj/
