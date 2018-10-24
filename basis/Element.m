@@ -31,11 +31,43 @@ classdef Element < handle
     end
     
     methods
+        
+        function obj = Element(name, blockChoice)
+            % A template constructor for any class that inherits this,
+            % super grandparent class
+            
+            if nargin > 0
+                obj.name = name;
+            end
+            if nargin > 1
+                obj.blockChoice = blockChoice;
+            end
+        end
+        
+        function elements = getSubElements(obj)
+            % This method will return a list of subelements for any
+            % element object
+            
+            %get properties of the current element object
+            props = properties(obj);
+            elements = {};
+            
+            %covert properties to struct
+            for i = 1:length(props)
+                % If any property in the this element objct is of type
+                % element, it is a subelement
+                if (isa(obj.(props{i}), 'Element'))
+                    elements{end + 1} = obj.(props{i}); %#ok<AGROW>
+                end 
+            end
+            
+        end
+        
     end
     
     methods (Access = protected)
         
-        function structure = genStruct()
+        function structure = genStruct(obj)
             % This method converts this instance of the Element class into
             % a structure that can be consumed by the simulink model
             
@@ -53,8 +85,7 @@ classdef Element < handle
                 end
             end
         end
-        
+             
     end
-    
 end
 
