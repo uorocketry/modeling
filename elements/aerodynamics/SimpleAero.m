@@ -1,12 +1,13 @@
-classdef SolidMotor < Element
-    %SOLIDMOTOR Summary of this class goes here
+classdef SimpleAero < Element
+    %SIMPLEAERO Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
+        
     end
     
     methods
-        function obj = SolidMotor()
+        function obj = SimpleAero()
         end
         
         function initialize(obj)

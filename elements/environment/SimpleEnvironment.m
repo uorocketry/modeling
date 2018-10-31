@@ -8,6 +8,9 @@ classdef SimpleEnvironment < Element
     methods
         function obj = SimpleEnvironment()
         end
+        
+        function initialize(obj)
+        end
     end
 end
 
