@@ -8,6 +8,8 @@ classdef DummyAvionics < Element
     
     methods
         function obj = DummyAvionics()
+            name = 'avionics';
+            obj = obj@Element(name, blockchoice);
         end
         
         function initialize(obj)

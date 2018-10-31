@@ -60,7 +60,10 @@ classdef Element < handle
                     elements{end + 1} = obj.(props{i}); %#ok<AGROW>
                 end 
             end
-            
+        end
+        
+        function struct = peekStruct(obj)
+            struct = obj.genStruct();
         end
         
     end

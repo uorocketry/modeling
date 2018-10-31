@@ -6,7 +6,9 @@ classdef SingleChute < Element
     end
     
     methods
-        function obj = SingleChute()
+        function obj = SingleChute(blockchoice)
+            name = 'recovery';
+            obj = obj@Element(name, blockchoice);
         end
         
         function initialize(obj)

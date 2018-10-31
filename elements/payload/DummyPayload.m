@@ -8,6 +8,8 @@ classdef DummyPayload < Element
     
     methods
         function obj = DummyPayload()
+            name = 'payload';
+            obj = obj@Element(name, blockchoice);
         end
         
         function initialize(obj)

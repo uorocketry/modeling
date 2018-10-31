@@ -6,7 +6,9 @@ classdef SolidMotor < Element
     end
     
     methods
-        function obj = SolidMotor()
+        function obj = SolidMotor(blockchoice)
+            name = 'propulsion';
+            obj = obj@Element(name, blockchoice);
         end
         
         function initialize(obj)

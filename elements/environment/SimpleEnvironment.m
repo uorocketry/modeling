@@ -7,6 +7,8 @@ classdef SimpleEnvironment < Element
     
     methods
         function obj = SimpleEnvironment()
+            name = 'environment';
+            obj = obj@Element(name, blockchoice);
         end
         
         function initialize(obj)
