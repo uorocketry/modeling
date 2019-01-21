@@ -3,7 +3,6 @@ classdef FSv1 < Element
     %   Detailed explanation goes here
     
     properties
-        
     end
     
     methods
