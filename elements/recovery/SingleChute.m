@@ -1,4 +1,4 @@
-classdef SingleChute < Element
+classdef SingleChute < Recovery
     %SINGLECHUTE Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -22,8 +22,7 @@ classdef SingleChute < Element
     
     methods
         function obj = SingleChute(blockchoice)
-            name = 'recovery';
-            obj = obj@Element(name, blockchoice);
+            obj = obj@Recovery(blockchoice);
         end
         
         function initialize(obj)

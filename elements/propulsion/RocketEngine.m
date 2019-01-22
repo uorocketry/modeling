@@ -20,6 +20,7 @@ classdef RocketEngine < Element
         function obj = RocketEngine(blockchoice)
             name = 'propulsion';
             obj = obj@Element(name, blockchoice);
+            obj.libraryLoc = 'elementsLibrary/propulsion';
         end
         
         function initialize(obj)

@@ -9,9 +9,7 @@ classdef Sequencer < Element
         function obj = Sequencer(blockchoice)
             name = 'sequencer';
             obj = obj@Element(name, blockchoice);
-        end
-        
-        function initialize(obj)
+            obj.libraryLoc = 'elementsLibrary/sequencer';
         end
     end
 end

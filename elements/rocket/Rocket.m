@@ -6,13 +6,14 @@ classdef Rocket < Element
         aero = Aero.empty;
         propulsion = RocketEngine.empty;
         recovery
-        sequencer
+        sequencer = Sequencer.empty;
     end
     
     methods
         function obj = Rocket(blockchoice)
             name = 'rocket';
             obj = obj@Element(name, blockchoice);
+            obj.libraryLoc = 'elementsLibrary/rocket';
         end
     end
 end
