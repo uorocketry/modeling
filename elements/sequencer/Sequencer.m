@@ -1,4 +1,4 @@
-classdef FSv1 < Element
+classdef Sequencer < Element
     %FSV1 Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -6,7 +6,7 @@ classdef FSv1 < Element
     end
     
     methods
-        function obj = FSv1(blockchoice)
+        function obj = Sequencer(blockchoice)
             name = 'sequencer';
             obj = obj@Element(name, blockchoice);
         end
