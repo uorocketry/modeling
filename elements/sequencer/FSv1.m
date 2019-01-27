@@ -10,7 +10,7 @@ classdef FSv1 < Sequencer
             obj@Sequencer(blockchoice);
         end
         
-        function intiialize(obj)
+        function initialize(obj)
         end
     end
 end

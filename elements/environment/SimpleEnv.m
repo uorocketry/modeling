@@ -20,6 +20,7 @@ classdef SimpleEnv < Element
         function obj = SimpleEnv(blockchoice)
             name = 'environment';
             obj = obj@Element(name, blockchoice);
+            obj.libraryLoc = 'elementsLibrary/environment';
         end
         
         function initialize(obj)

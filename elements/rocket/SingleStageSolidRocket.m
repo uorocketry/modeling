@@ -8,10 +8,12 @@ classdef SingleStageSolidRocket < Rocket
     methods
         function obj = SingleStageSolidRocket(blockchoice)
             obj@Rocket(blockchoice);
-            obj.aero = Aero();
-            obj.propulsion = SolidMotor();
-            obj.recovery = SingleChute();
-            obj.sequencer = Sequencer();
+            obj.aero = SingleBodyAero('Aerov1');
+            obj.propulsion = SolidMotor('SolidMotor');
+            obj.recovery = SingleChute('SingleChute');
+            obj.sequencer = FSv1('FSv1');
+            obj.avionics = AvionicsV1('Avionicsv1');
+            obj.payload = Payload2019();
         end
         
         function initialize(obj)
