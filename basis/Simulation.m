@@ -70,21 +70,17 @@ classdef Simulation < handle
             % and configure the sysModel
             elementName = obj.simElement.name;
             elementLibraryLoc = obj.simElement.libraryLoc;
-            environmentLibraryLoc = obj.simEnvironment.libraryLoc;
             
             % Generate a system model
             modelName = obj.sysModel; 
             fprintf(obj.fileID, 'Performing magic ....\n');
             obj.simulinkMagic(modelName,...
                               elementName,...
-                              elementLibraryLoc,...
-                              environmentLibraryLoc);
+                              elementLibraryLoc);
             
             % Assign all variables to simulink workspace
             simulinkWS = get_param(modelName, 'modelworkspace');
             simulinkWS.assignin(elementName, obj.simElement.genStruct());
-            simulinkWS.assignin('environment',...
-                                obj.simEnvironment.genStruct());
             simulinkWS.assignin('simInput', obj.simInput);
             
             % Set simulation status to configured
@@ -133,8 +129,7 @@ classdef Simulation < handle
         
         function simulinkMagic(obj, modelName,...
                                elementName,...
-                               elementLibraryLoc,...
-                               environmentLibraryLoc)
+                               elementLibraryLoc)
             % This method generates the top level of the system model in  
             % the 'blackpage.slx' model file. All required connections and
             % blocks required to run any simulation will be configured for
@@ -150,8 +145,6 @@ classdef Simulation < handle
                           sprintf('%s/%s', modelName, 'clock'));
                 add_block(elementLibraryLoc,...
                           desElementBlockPath);
-                add_block(environmentLibraryLoc,...
-                          sprintf('%s/%s', modelName, 'environment'));
                 
                 clockHandles = get_param(sprintf('%s/clock', modelName),...
                                          'PortHandles');
