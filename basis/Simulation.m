@@ -110,7 +110,7 @@ classdef Simulation < handle
         
         function obj = process(obj)
             % Processes the logs from the simulink model
-        
+            
             obj.simStatus = SimState.POST_PROCESSED;
         end
     end
@@ -278,7 +278,7 @@ classdef Simulation < handle
             for i=1:length(fieldsInStruct)
                 furtherSubPath = sprintf('%s.%s', subPath,...
                                         fieldsInStruct{i});
-                sigDimension = size(eval(subPath));
+                sigDimension = size(eval(furtherSubPath));
                 
                 if (isstruct(eval(furtherSubPath)))
                     obj.magicInportBus(modelName,...

@@ -39,7 +39,8 @@ sim.simEnvironment.initialize();
 %  the simulation.
 
 sim.simInput = struct();
-sim.simInput.In1 = [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1];
+sim.simInput.In1.a = [1 1 1; 1 1 1; 1 1 1];
+sim.simInput.In1.b = [2 2 2];
 %sim.simInput.in2 = [2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2];
 
 bdclose all;
