@@ -42,6 +42,9 @@ sim.simInput = struct();
 sim.simInput.In1 = [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1];
 %sim.simInput.in2 = [2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2];
 
+bdclose all;
+sim.configureModel();
+
 %% Run the simulation and perform any sort of study
 %  Different studies will require different #s of runs and different sets
 %  of data from the simulink model. It is in your hands from here on out;
