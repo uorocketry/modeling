@@ -64,6 +64,17 @@ end
 %% Parameters for Propulsion Elements
 if (seek == "SolidMotor")
     
+    % engine location
+    retParams.X_GM = 0;                           % engine location from nose tip                     [m]
+
+    % other motor params
+    retParams.Ae = 0;                             % exit area of nozzle                               [m^2]
+    retParams.Ve = 0;                             % exit velocity of gasses out of nozzle             [m/s]
+    retParams.thrustProfile = 0;                  % a thrust-time profile to describe thrust          []
+    retParams.m_full = 0;                         % full mass of motor                                [Kg]
+    retParams.m_empty = 0;                        % empty mass of motor                               [Kg]
+
+    
     % grain geometery
     retParams.d_initalgrainInner = 0;              % grain initial inner diameter                              [m]
     retParams.d_grainOuter = 0;                    % grain outerdiameter                                       [m]

@@ -55,7 +55,9 @@ classdef SingleBodyAero < Aero
             obj@Aero(blockchoice);
         end
         
-        function initialize(obj)
+        function initialize(obj)  
+            obj.assignParameters();
+            obj.initialized = true;
         end
     end
 end

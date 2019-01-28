@@ -66,6 +66,16 @@ classdef Element < handle
             struct = obj.genStruct();
         end
         
+        function assignParameters(obj)
+            params = parameters(obj.blockChoice);
+            fields = fieldnames(params);
+            
+            for k=1:length(fields)
+                evalString = sprintf('obj.%s=params.%s;',fields{k},...
+                                     fields{k});
+                eval(evalString);
+            end
+        end
     end
     
     methods (Access = protected)

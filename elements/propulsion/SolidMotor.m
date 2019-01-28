@@ -17,6 +17,8 @@ classdef SolidMotor < RocketEngine
         end
         
         function initialize(obj)
+            obj.assignParameters();
+            obj.initialized = true;
         end
     end
 end

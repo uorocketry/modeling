@@ -17,6 +17,17 @@ classdef SingleStageSolidRocket < Rocket
         end
         
         function initialize(obj)
+            
+            obj.assignParameters();
+            
+            obj.aero.initialize();
+            obj.propulsion.initialize();
+            obj.recovery.initialize();
+            obj.sequencer.initialize();
+            obj.avionics.initialize();
+            obj.payload.initialize();
+            
+            obj.initialized = true;
         end
     end
 end

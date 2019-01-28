@@ -11,6 +11,8 @@ classdef FSv1 < Sequencer
         end
         
         function initialize(obj)
+            obj.assignParameters();
+            obj.initialized = true;
         end
     end
 end

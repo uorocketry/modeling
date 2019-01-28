@@ -12,6 +12,8 @@ classdef Payload2019 < Payload
         end
         
         function initialize(obj)
+            obj.assignParameters();
+            obj.initialized = true;
         end
     end
 end

@@ -11,6 +11,8 @@ classdef AvionicsV1 < Avionics
         end
         
         function initialize(obj)
+            obj.assignParameters();
+            obj.initialized = true;
         end
     end
 end
