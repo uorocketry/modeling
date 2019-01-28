@@ -13,6 +13,7 @@ elem = SingleStageSolidRocket('Jackalope');
 %  parameter that all elements share is timeStep. This parameter determines
 %  what discretization the simulation will run at for the corresponding
 %  block in simulink - specify this parameter here.
+elem.initialize();
 
 %% Create a Simulation Object
 %  This is the object that will handle transforming the Simulation Element
@@ -27,6 +28,7 @@ sim = Simulation(elem);
 %  provided is compatible with the simulation element.
 
 sim.simEnvironment = SimpleEnv('Earthv1');
+sim.simEnvironment.initialize();
 
 %% Provide the Simulation object with Inputs
 %  Every simulation will need inputs other than that the environment will
@@ -37,8 +39,8 @@ sim.simEnvironment = SimpleEnv('Earthv1');
 %  the simulation.
 
 sim.simInput = struct();
-sim.simInput.in1 = [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1];
-sim.simInput.in2 = [2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2];
+sim.simInput.In1 = [1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1];
+%sim.simInput.in2 = [2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2];
 
 %% Run the simulation and perform any sort of study
 %  Different studies will require different #s of runs and different sets

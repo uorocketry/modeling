@@ -76,9 +76,9 @@ if (seek == "SolidMotor")
 
     
     % grain geometery
-    retParams.d_initalgrainInner = 0;              % grain initial inner diameter                              [m]
-    retParams.d_grainOuter = 0;                    % grain outerdiameter                                       [m]
-    retParams.l_grain = 0;                         % grain length                                              [m]
+    retParams.d_initalgrainInner = 0;             % grain initial inner diameter                              [m]
+    retParams.d_grainOuter = 0;                   % grain outerdiameter                                       [m]
+    retParams.l_grain = 0;                        % grain length                                              [m]
 
 end
 
@@ -86,19 +86,19 @@ end
 if (seek == "SingleChute")
     
     % parachute system geometry
-    retParams.d_parachute = 0;                     % parachute diameter                                            [m]
-    retParams.l_riser = 0;                         % nominal length of riser (modeling all lines)                  [m]
-    retParams.X_briddle = 0;                       % location of briddle (riser connection point)                  [m]
+    retParams.d_parachute = 0;                    % parachute diameter                                            [m]
+    retParams.l_riser = 0;                        % nominal length of riser (modeling all lines)                  [m]
+    retParams.X_briddle = 0;                      % location of briddle (riser connection point)                  [m]
 
     % other parachute params
-    retParams.k_lines = 0;                         % spring constant of modeled lines                              []
-    retParams.c_lines = 0;                         % damping ratio of modeled lines                                []
-    retParams.c_d = 0;                             % coefficient of drag                                           []
-    retParams.mass_p = 0;                          % mass of parachute                                             [Kg]
+    retParams.k_lines = 0;                        % spring constant of modeled lines                              []
+    retParams.c_lines = 0;                        % damping ratio of modeled lines                                []
+    retParams.c_d = 0;                            % coefficient of drag                                           []
+    retParams.mass_p = 0;                         % mass of parachute                                             [Kg]
 
     % tumbling rocket params
-    retParams.mass_r = 0;                          % mass of tumbling rocket                                       [Kg]
-    retParams.X_roff = 0;                          % location of riser connection point to tumbling rocket body    [m]
+    retParams.mass_r = 0;                         % mass of tumbling rocket                                       [Kg]
+    retParams.X_roff = 0;                         % location of riser connection point to tumbling rocket body    [m]
 
 end
 
@@ -118,7 +118,7 @@ end
 if (seek == "Earthv1")
         
     % emperical wind parameters
-    Z_roughness                                     % roughness length of terrain
+    retParams.Z_roughness = 0;                    % roughness length of terrain
 
 end
 
