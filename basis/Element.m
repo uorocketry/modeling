@@ -78,7 +78,7 @@ classdef Element < handle
         end
     end
     
-    methods (Access = protected)
+    methods (Access = {?Simulation})
         
         function structure = genStruct(obj)
             % This method converts this instance of the Element class into
