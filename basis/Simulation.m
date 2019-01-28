@@ -85,7 +85,7 @@ classdef Simulation < handle
             simulinkWS.assignin(elementName, obj.simElement.genStruct());
             simulinkWS.assignin('environment',...
                                 obj.simEnvironment.genStruct());
-            simulinkWS.assignin('input', obj.simInput);
+            simulinkWS.assignin('simInput', obj.simInput);
             
             % Set simulation status to configured
             obj.simStatus = SimState.CONFIGURED;
@@ -113,6 +113,20 @@ classdef Simulation < handle
             
             obj.simStatus = SimState.POST_PROCESSED;
         end
+        
+        function openModel(obj)
+            % openModel simply opens the system model if the desire is to
+            % manually run simulations - or just look at the model in
+            % general.
+            
+            fprintf(obj.fileID,'Opening model ....\n'); 
+            
+            open_system(obj.sysModel);
+            
+            % Make simulink diagram look a little better... just a little
+            Simulink.BlockDiagram.arrangeSystem(obj.sysModel);
+        end
+
     end
     
     methods(Access = private)
