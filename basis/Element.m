@@ -14,7 +14,7 @@ classdef Element < handle
     
     properties
         blockChoice                     %block choice from simulink library
-        timeStep                        %time step the element will be run at
+        timeStep = 0.001                %time step the element will be run at (in seconds)
     end
     
     methods(Abstract)

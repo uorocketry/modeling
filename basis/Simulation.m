@@ -10,6 +10,7 @@ classdef Simulation < handle
         sysModel                        % simulink model name
         simInput                        % struct of inputs to be fed into the simulation
         simEnvironment                  % object that describes the envrionment under simulation
+        endTime                         % the ending time of the simulation in seconds
     end
     
     properties (SetAccess = private)
@@ -81,6 +82,8 @@ classdef Simulation < handle
             % Assign all variables to simulink workspace
             simulinkWS = get_param(modelName, 'modelworkspace');
             simulinkWS.assignin(elementName, obj.simElement.genStruct());
+            simulinkWS.assignin('endTime', obj.endTime);
+            simulinkWS.assignin('timeStep', obj.simElement.timeStep);
             simulinkWS.assignin('simInput', obj.simInput);
             
             % Set simulation status to configured

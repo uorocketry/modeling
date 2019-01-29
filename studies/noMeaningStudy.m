@@ -30,7 +30,7 @@ sim = Simulation(elem);
 sim.simEnvironment = SimpleEnv('Earthv1');
 sim.simEnvironment.initialize();
 
-%% Provide the Simulation object with Inputs
+%% Provide the Simulation object with Inputs and 'user' inputs
 %  Every simulation will need inputs other than that the environment will
 %  provide. These inputs depend on which Simulation Element is being
 %  considered. Additionally, these inputs must be provided in the format of
@@ -42,6 +42,8 @@ sim.simInput = struct();
 sim.simInput.In1.a = [1 1 1; 1 1 1; 1 1 1];
 sim.simInput.In1.b = [2 2 2];
 %sim.simInput.in2 = [2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2];
+
+sim.endTime = 200;
 
 bdclose all;
 sim.configureModel();
