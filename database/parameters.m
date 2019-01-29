@@ -118,7 +118,19 @@ end
 if (seek == "Earthv1")
         
     % emperical wind parameters
-    retParams.Z_roughness = 0;                    % roughness length of terrain
+    retParams.Z_roughness = 0;                         % roughness length of terrain
+    retParams.atmospheric_coeff = 0.273;               % emperial coefficient for wind speed calculation
+
+    % measured wind parameters
+    retParams.referenceWindSpeed = 20;                 % the 'measured' wind speed as a reference                [m/s]
+    retParams.referenceWindAltitude = 10;              % the altitude where reference speed was 'measured'       [m]
+
+    % measured static conditions used to interpolate
+    retParams.referenceStaticAltitude = 2000;          % the altitude where static conditions were 'measured'    [m]
+    retParams.temperatureAtStaticAlt = 253;            % the 'measured' temperature at static altitude           [K]
+    retParams.temperatureAtGround = 293;               % the 'measured' temperature on 0 AGL                     [K]
+    retParams.pressureAtStaticAlt = 79900;             % the 'measured' pressure at static altitude              [Pa]
+    retParams.pressureAtGround = 101325;               % the 'measured' pressure at 0 AGL                        [Pa]
 
 end
 
