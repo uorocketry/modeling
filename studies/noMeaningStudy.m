@@ -5,7 +5,7 @@
 % processing the results.
 
 %% Create Simulation Element (ie. the model to be simulated)
-elem = SingleStageSolidRocket('Jackalope');
+elem = SimpleEnv('Earthv1');
 
 %% Initialize Simulation Element with correct values
 %  This can be done in many ways, ranging from manual input to importing
@@ -22,28 +22,20 @@ elem.initialize();
 
 sim = Simulation(elem);
 
-%% Provide the Simulation object with an environment
-%  This environment will feed values into the simulation element in the
-%  simulink model. It is a good idea to make sure the environment model
-%  provided is compatible with the simulation element.
-
-sim.simEnvironment = SimpleEnv('Earthv1');
-sim.simEnvironment.initialize();
-
 %% Provide the Simulation object with Inputs and 'user' inputs
-%  Every simulation will need inputs other than that the environment will
-%  provide. These inputs depend on which Simulation Element is being
-%  considered. Additionally, these inputs must be provided in the format of
-%  a structure, unlike the simElement or simEnvironment (which are
-%  provided as objects). These inputs define a value for every time step of
-%  the simulation.
-
-sim.simInput = struct();
-sim.simInput.In1.a = [1 1 1; 1 1 1; 1 1 1];
-sim.simInput.In1.b = [2 2 2];
-%sim.simInput.in2 = [2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2];
+%  Every simulation will need inputs; these inputs depend on which 
+%  Simulation Element is being considered. Additionally, these inputs must 
+%  be provided in the format of a structure, unlike the simElement or 
+%  simEnvironment (which are provided as objects). These inputs define a 
+%  value for every time step of the simulation.
 
 sim.endTime = 200;
+sim.timeProfile = 0:sim.simElement.timeStep:sim.endTime;
+altitudeProfile = [0 3500];
+altProfileTime = [0 sim.endTime];
+
+sim.simInput = struct();
+sim.simInput.altitude = interp1(altProfileTime, altitudeProfile, sim.timeProfile);
 
 bdclose all;
 sim.configureModel();

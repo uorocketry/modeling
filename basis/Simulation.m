@@ -9,12 +9,12 @@ classdef Simulation < handle
         simMode = SimMode.RAPIDACCEL;   % simulation mode
         sysModel                        % simulink model name
         simInput                        % struct of inputs to be fed into the simulation
-        simEnvironment                  % object that describes the envrionment under simulation
+        simElement                      % element object to be simulated
+        timeProfile                     % the time profile that inputs to a simulation must follow
         endTime                         % the ending time of the simulation in seconds
     end
     
     properties (SetAccess = private)
-        simElement                      % element object to be simulated
         res                             % processed results structure
         logs                            % 'logsout' from simulink
         simStatus                       % simulation status
@@ -41,12 +41,7 @@ classdef Simulation < handle
             assert(isa(val,'SimMode'),'simMode needs to be of type SimMode, currently is a %s.',class(val));
             obj.simMode = val;
         end
-        
-        function set.simEnvironment(obj, val)
-            assert(isa(val, 'Element'), 'simEnvironment needs to inherit from type Element, currently is a %s.',class(val))
-            obj.simEnvironment = val;
-        end
-        
+                
         function res = run(obj)
             % Configures and simulates the instance of the Simulation class
             % as defined by obj. Returns results of the simulation in a
@@ -85,6 +80,7 @@ classdef Simulation < handle
             simulinkWS.assignin('endTime', obj.endTime);
             simulinkWS.assignin('timeStep', obj.simElement.timeStep);
             simulinkWS.assignin('simInput', obj.simInput);
+            simulinkWS.assignin('timeProfile', obj.timeProfile);
             
             % Set simulation status to configured
             obj.simStatus = SimState.CONFIGURED;
@@ -164,9 +160,9 @@ classdef Simulation < handle
                 
                 elementOutportHandles = find_system(desElementBlockPath,...
                                                     'LookUnderMasks','all',...
-                                                    'SearchDepth',1,...
                                                     'FollowLinks','on',...
                                                     'FindAll', 'on',...
+                                                    'SearchDepth',1,...
                                                     'BlockType','Outport');
             catch
                 errorMsg = 'Error 1: Model was not generated!';
@@ -376,7 +372,7 @@ classdef Simulation < handle
             set_param(lookupTablePath, 'BreakpointsSpecification',...
                       'Explicit Values');
             set_param(lookupTablePath, 'BreakpointsForDimension1',...
-                      'user.timeProfile');
+                      'timeProfile');
             set_param(lookupTablePath, 'Table',...
                       tablePath);
             lookupTableHandles = get_param(lookupTablePath, 'portHandles');
@@ -402,6 +398,10 @@ classdef Simulation < handle
                                          outportHandles)
             % Method to generate all outport connections. On the top level,
             % only a connection to a terminator is required
+            %desBlockPath = sprintf("%s/%s",modelName,obj.simElement.name);
+            %blockChoiceHandles = get_param(desBlockPath,...
+            %                               'PortHandles');
+            %blockChoiceOutportHandles = blockChoiceHandles.Outport;
             
             for i=1:length(outportHandles)
                 
