@@ -10,6 +10,7 @@ classdef SimpleEnv < Element
         % measured wind parameters
         referenceWindSpeed                          % the 'measured' wind speed as a reference                [m/s]
         referenceWindAltitude                       % the altitude where reference speed was 'measured'       [m]
+        referenceWindAngle                          % the angle of wind (ie. encoded wind direction)          [rad]
         
         % measured static conditions used to interpolate
         referenceStaticAltitude                     % the altitude where static conditions were 'measured'    [m]

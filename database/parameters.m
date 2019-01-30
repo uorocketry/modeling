@@ -127,9 +127,10 @@ if (seek == "Earthv1")
     retParams.atmospheric_coeff = 0.273;               % emperial coefficient for wind speed calculation
 
     % measured wind parameters
-    retParams.referenceWindSpeed = 20;                 % the 'measured' wind speed as a reference                [m/s]
-    retParams.referenceWindAltitude = 10;              % the altitude where reference speed was 'measured'       [m]
-
+    retParams.referenceWindSpeed = 20;                 % the 'measured' wind speed as a reference                       [m/s]
+    retParams.referenceWindAltitude = 10;              % the altitude where reference speed was 'measured'              [m]
+    retParams.referenceWindAngle = 0;                  % the angle of wind from 'x-axis (ie. encoded wind direction)    [rad]
+    
     % measured static conditions used to interpolate
     retParams.referenceStaticAltitude = 2000;          % the altitude where static conditions were 'measured'    [m]
     retParams.temperatureAtStaticAlt = 253;            % the 'measured' temperature at static altitude           [K]

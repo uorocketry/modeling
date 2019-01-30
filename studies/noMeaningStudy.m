@@ -14,6 +14,7 @@ elem = SimpleEnv('Earthv1');
 %  what discretization the simulation will run at for the corresponding
 %  block in simulink - specify this parameter here.
 elem.initialize();
+elem.referenceWindAngle = 0.25;
 
 %% Create a Simulation Object
 %  This is the object that will handle transforming the Simulation Element
