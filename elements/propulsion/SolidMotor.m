@@ -9,6 +9,9 @@ classdef SolidMotor < RocketEngine
         d_grainOuter                            % grain outerdiameter                               [m]
         l_grain                                 % grain length                                      [m]
         
+        thrustProfile                           % a thrust-time profile to describe thrust          [N]
+        massProfile                             % a mass-time profile of motor                      [Kg]
+        
     end
     
     methods

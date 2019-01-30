@@ -6,13 +6,12 @@ classdef RocketEngine < Element
         
         % engine location
         X_GM                                    % engine location from nose tip                     [m]
+        X_CG_full                               % initial location of cg of engine from X_GM        [m]
         
         % other motor params
         Ae                                      % exit area of nozzle                               [m^2]
-        Ve                                      % exit velocity of gasses out of nozzle             [m/s]
-        thrustProfile                           % a thrust-time profile to describe thrust          []
-        m_full                                  % full mass of motor                                [Kg]
-        m_empty                                 % empty mass of motor                               [Kg]
+        m_wet                                   % mass of engine with propellants                   [Kg]
+        m_dry                                   % mass of engine without proellants                 [Kg]
 
     end
     

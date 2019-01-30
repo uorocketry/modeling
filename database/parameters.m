@@ -64,21 +64,26 @@ end
 %% Parameters for Propulsion Elements
 if (seek == "SolidMotor")
     
-    % engine location
+    % engine locations
     retParams.X_GM = 0;                           % engine location from nose tip                     [m]
-
+    retParams.X_CG_full = 0;                      % location of cg of engine from X_GM                [m]
+    
     % other motor params
-    retParams.Ae = 0;                             % exit area of nozzle                               [m^2]
-    retParams.Ve = 0;                             % exit velocity of gasses out of nozzle             [m/s]
-    retParams.thrustProfile = 0;                  % a thrust-time profile to describe thrust          []
-    retParams.m_full = 0;                         % full mass of motor                                [Kg]
-    retParams.m_empty = 0;                        % empty mass of motor                               [Kg]
-
+    retParams.Ae = 0.001;                         % exit area of nozzle                               [m^2]
+    retParams.thrustProfile = [0 0.12 0.21 0.6 0.9 1.2 1.5 1.8 2.1 2.4 2.7 2.99 3.0;...
+                               0 2600 2482 2715 2876 2938 2889 2785 2573 2349 2182 85 0];                  
+                                                  % a thrust-time profile to describe thrust          [N]
+                                                  
+    retParams.m_wet = 6.258;                      % full mass of motor                                [Kg]
+    retParams.m_dry = 2.835;                      % empty mass of motor                               [Kg]
+    retParams.massProfile = [0 0.12 0.21 0.6 0.9 1.2 1.5 1.8 2.1 2.4 2.7 2.99 3.0;...
+                             3.423 3.35069 3.24469 2.77495 2.38622 1.98198 1.57684 1.18234 0.809811 0.467594 0.152563 .000196996 0];
+                                                  % mass as a function of time                        [Kg]  
     
     % grain geometery
-    retParams.d_initalgrainInner = 0;             % grain initial inner diameter                              [m]
-    retParams.d_grainOuter = 0;                   % grain outerdiameter                                       [m]
-    retParams.l_grain = 0;                        % grain length                                              [m]
+    retParams.d_initalgrainInner = 0;             % grain initial inner diameter                      [m]
+    retParams.d_grainOuter = 0;                   % grain outerdiameter                               [m]
+    retParams.l_grain = 0.548;                    % grain length                                      [m]
 
 end
 

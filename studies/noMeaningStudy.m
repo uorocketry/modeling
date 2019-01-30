@@ -30,8 +30,10 @@ sim = Simulation(elem);
 %  value for every time step of the simulation.
 
 sim.endTime = 200;
+
 sim.timeProfile = 0:sim.simElement.timeStep:sim.endTime;
 altitudeProfile = [0 3500];
+
 altProfileTime = [0 sim.endTime];
 
 sim.simInput = struct();
