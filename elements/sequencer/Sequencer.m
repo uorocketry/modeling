@@ -3,6 +3,7 @@ classdef Sequencer < Element
     %   Detailed explanation goes here
     
     properties
+        initialFlightState                          % the starting state of flight (typically pre-ignition)
     end
     
     methods

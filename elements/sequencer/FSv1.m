@@ -3,6 +3,8 @@ classdef FSv1 < Sequencer
     %   Detailed explanation goes here
     
     properties
+        launchTowerLength                       % length of launch tower            [m]
+        launchTowerOrientation                  % orientation of launch tower       [rad]
     end
     
     methods

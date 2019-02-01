@@ -117,6 +117,9 @@ end
 
 %% Parameters for Sequencer Elements
 if (seek == "FSv1")
+    retParams.initialFlightState = 0;                  % the starting state of flight (typically pre-ignition)
+    retParams.launchTowerLength = 5.18;                % length of launch tower                                         [m]
+    retParams.launchTowerOrientation = [0;0;0];        % orientation (euler angles) of launch tower wrt earth-fixed     [rad]
 end
 
 %% Parameters for Environment Elements
