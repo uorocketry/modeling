@@ -15,7 +15,9 @@ end
 if (seek == "Aerov1")
             
     %Inertia Matrix
-    retParams.InertiaMatNoEngine = 0;
+    retParams.InertiaMatNoEngine = [0 0 0;
+                                    0 0 0;
+                                    0 0 0];       % inertia matrix of rocket (flight config)                      [Kg*m^2]
 
     %body diameters
     retParams.dn = 0;                             % diameter at nosecone base                                     [m]
