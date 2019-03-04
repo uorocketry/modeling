@@ -256,6 +256,18 @@ classdef Simulation < handle
                              'autorouting', 'on');
                 end
             end
+            
+            if(~isempty(elementHandles.Enable))
+                add_block('simulink/Commonly Used Blocks/Constant',...
+                          sprintf('%s/%s',modelName, 'enable_sig'));
+                
+                ensigHandles = get_param(sprintf('%s/%s', modelName,...
+                                                 'enable_sig'),...
+                                         'PortHandles');
+                
+                add_line(modelName, ensigHandles.Outport,...
+                         elementHandles.Enable);
+            end
         end
         
         function magicInportBus(obj,...
