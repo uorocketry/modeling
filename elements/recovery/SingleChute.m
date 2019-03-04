@@ -13,11 +13,13 @@ classdef SingleChute < Recovery
         c_lines                                 % damping ratio of modeled lines                                []
         c_d                                     % coefficient of drag                                           []
         mass_p                                  % mass of parachute                                             [Kg]
+        inertiaMatP                             % inertia matrix of parachute                                   [Kg*m^2]
         
         % tumbling rocket params
         mass_r                                  % mass of tumbling rocket                                       [Kg]
         X_roff                                  % location of riser connection point to tumbling rocket body    [m]
-
+        inertiaMatR                             % inertia matrix of tumbling rocket (modeled as cylinder)       [Kg*m^2]
+        
     end
     
     methods

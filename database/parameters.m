@@ -100,11 +100,16 @@ if (seek == "SingleChute")
     retParams.c_lines = 10;                       % damping ratio of modeled lines                                []
     retParams.c_d = 1.226;                        % coefficient of drag                                           []
     retParams.mass_p = 1.1;                       % mass of parachute                                             [Kg]
-
+    retParams.inertiaMatP = [0 0 0;               % inertia matrix of parachute                                   [Kg*m^2]
+                             0 0 0;
+                             0 0 0];
+    
     % tumbling rocket params
     retParams.mass_r = 19.5;                      % mass of tumbling rocket                                       [Kg]
     retParams.X_roff = 0.6;                       % location of riser connection point to tumbling rocket body    [m]
-
+    retParams.inertiaMatR = [0 0 0;               % inertia matrix of tumbling rocket (modeled as cylinder)       [Kg*m^2]
+                             0 0 0;
+                             0 0 0];
 end
 
 %% Parameters for Avionics Elements
