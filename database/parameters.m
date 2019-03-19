@@ -83,8 +83,8 @@ if (seek == "SolidMotor")
                                                   % mass as a function of time                        [Kg]  
     
     % grain geometery
-    retParams.d_initalgrainInner = 0;             % grain initial inner diameter                      [m]
-    retParams.d_grainOuter = 0;                   % grain outerdiameter                               [m]
+    retParams.d_initalgrainInner = 0.05;          % grain initial inner diameter                      [m]
+    retParams.d_grainOuter = 0.14;                % grain outerdiameter                               [m]
     retParams.l_grain = 0.548;                    % grain length                                      [m]
 
 end

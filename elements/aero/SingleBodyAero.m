@@ -57,6 +57,7 @@ classdef SingleBodyAero < Aero
         % other params
         surfaceR                        % roughness of the surface of rocket                            [micometers]
         finessRatio                     % the 'fineness' ratio of rocket                                []
+        Cn                              % stability derivative
         
         % Table Data and breakpoints
         skinFrictionCorrection          % correction factor for skin friction as a function of mach     []
