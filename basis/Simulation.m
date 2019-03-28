@@ -34,6 +34,7 @@ classdef Simulation < handle
             
             obj.sysModel = 'blankpage';
             obj.simElement = element;
+            obj.simMode = SimMode.NORM;
             obj.simStatus = SimState.INSTANTIATED;
         end
         
@@ -47,11 +48,11 @@ classdef Simulation < handle
             % as defined by obj. Returns results of the simulation in a
             % structure named 'res'.
             bdclose all;
-            obj.configureModel()
+            obj.configureModel();
             
-            obj.simulate()
+            obj.simulate();
             
-            obj.process()
+            obj.process();
             
             res = obj.res;
         end
@@ -94,7 +95,14 @@ classdef Simulation < handle
             fprintf(obj.fileID,'Beginning of Simulation:\n');
             fprintf(obj.fileID,'========================================');
             
-            
+            switch (obj.simMode)
+                case SimMode.NORM
+                    sim(obj.sysModel);
+                    obj.logs = logsout;
+                case SimMode.RAPIDACCEL
+                    sim(obj.sysModel,'SimulationMode','rapid');
+                    obj.logs = logsout;
+            end
             
             fprintf(obj.fileID,'========================================');
             fprintf(obj.fileID,'End of Simulation');
@@ -105,7 +113,7 @@ classdef Simulation < handle
         
         function obj = process(obj)
             % Processes the logs from the simulink model
-            
+            obj.res = obj.logs;
             obj.simStatus = SimState.POST_PROCESSED;
         end
         
