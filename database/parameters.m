@@ -50,8 +50,7 @@ if (seek == "Aerov1")
     % Inportant Locations
     retParams.Xf = 0;                             %Fin location from nosetip                                      [m]
     retParams.Xc = 0;                             %Tail cone location from nosetip                                [m]
-    retParams.Xcp = 0;                            %center of pressure location from nosetip                       [m]
-
+    
     % other coeffs
     retParams.K_BF = 0;                           % coefficient that accounts for increase in normal force due to fin interference
                                                   %                                                               []
@@ -60,7 +59,8 @@ if (seek == "Aerov1")
     retParams.k_bf = 0;                           % body-fin intereference coeff                                  []
     retParams.del = 0;                            % experimental coeff 1 (to calculate AoA effects)               []
     retParams.eta = 0;                            % experimental coeff 2 (to calculate AoA effects)               []
-
+    retParams.K = 1.1;                            % experimental coeff for correction of stability derivative     []
+        
 end 
 
 %% Parameters for Propulsion Elements
@@ -96,7 +96,8 @@ if (seek == "SingleChute")
     retParams.d_parachute = 2.1;                  % parachute diameter                                            [m]
     retParams.l_riser = 5;                        % nominal length of riser (modeling all lines)                  [m]
     retParams.X_briddle = 0.5;                    % location of briddle (riser connection point)                  [m]
-
+    retParams.surfArea_p = 2;                     % the reference surface area of the parachute                   [m^2]
+    
     % other parachute params
     retParams.k_lines = 200;                      % spring constant of modeled lines                              []
     retParams.c_lines = 10;                       % damping ratio of modeled lines                                []

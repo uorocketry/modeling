@@ -40,9 +40,15 @@ classdef SingleBodyAero < Aero
         nf                              % number of fins                                                [dimless]
         
         % Inportant Locations
-        Xf                              %Fin location from nosetip                                      [m]
-        Xc                              %Tail cone location from nosetip                                [m]
-        Xcp                             %center of pressure location from nosetip                       [m]
+        Xf                              %fin location from nosetip                                      [m]
+        Xc                              %tail cone location from nosetip                                [m]
+        Xcp_nose                        %center of pressure location of nosecone from nosetip           [m]
+        Xcp_body                        %center of pressure location of body from nosetip               [m]
+        Xcp_fins                        %center of pressure location of fins from nosetip               [m]
+        
+        % CNalpha Components
+        CNalpha_nose                    % stability derivative component of nosecone                    []
+        CNalpha_fins                    % stability derivative component of fins                        []
         
         % other coeffs
         K_BF                            % coefficient that accounts for increase in normal force due to fin interference
@@ -53,12 +59,12 @@ classdef SingleBodyAero < Aero
         del                             % experimental coeff 1 (to calculate AoA effects)               []
         eta                             % experimental coeff 2 (to calculate AoA effects)               []
         kinVisc                         % kinematic viscosity of air ***                                []
+        K                               % experimental coeff for correction of stability derivative     []
         
         % other params
         surfaceR                        % roughness of the surface of rocket                            [micometers]
         finessRatio                     % the 'fineness' ratio of rocket                                []
-        Cn                              % stability derivative
-        initQuaternions                 % initial quaternions defining the starting orientation
+        initQuaternions                 % initial quaternions defining the starting orientation         []
         
         % Table Data and breakpoints
         skinFrictionCorrection          % correction factor for skin friction as a function of mach     []
@@ -80,6 +86,20 @@ classdef SingleBodyAero < Aero
         
         function initialize(obj)  
             obj.assignParameters();
+            
+            % Calculate componentwise Xcp and CNalpha
+            obj.Xcp_nose = 0.466*obj.ln;                % for ogive nosecone
+            obj.Xcp_body = obj.ln + 0.5*obj.lb;         % correction for lift
+            
+            obj.Xcp_fins = obj.Xf + ...
+                           (obj.lm*(obj.lr + 2*obj.lt))/(3*(obj.lr + obj.lt)) + ...
+                           0.6*(obj.lr + obj.lt - ((obj.lr*obj.lt)/(obj.lr+obj.lt)));
+            
+            obj.CNalpha_nose = 2;                       % hmmmm, this seems odd
+            
+            obj.K_BF = 1 + ((0.5*obj.df)/(obj.ls + 0.5*obj.df));
+            obj.CNalpha_fins = obj.K_BF*((4*obj.nf*((obj.ls)/(obj.dn))^2)/(1+sqrt(1 + ((2*obj.lm)/(obj.lr + obj.lt))^2)));
+            
             obj.initialized = true;
         end
     end

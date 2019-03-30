@@ -7,6 +7,7 @@ classdef SingleChute < Recovery
         d_parachute                             % parachute diameter                                            [m]
         l_riser                                 % nominal length of riser (modeling all lines)                  [m]
         X_briddle                               % location of briddle (riser connection point)                  [m]
+        surfArea_p                              % the reference surface area of the parachute                   [m^2]
         
         % other parachute params
         k_lines                                 % spring constant of modeled lines                              []
