@@ -38,7 +38,7 @@ altitudeProfile = [0 3500];
 altProfileTime = [0 sim.endTime];
 
 sim.simInput = struct();
-sim.simInput.altitude = interp1(altProfileTime, altitudeProfile, sim.timeProfile);
+sim.simInput.altitude_E = interp1(altProfileTime, altitudeProfile, sim.timeProfile);
 
 bdclose all;
 sim.configureModel();
