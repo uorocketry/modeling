@@ -6,7 +6,7 @@ classdef Simulation < handle
     %==================================================================
     
     properties
-        simMode = SimMode.RAPIDACCEL;   % simulation mode
+        simMode = SimMode.NORM;         % simulation mode
         sysModel                        % simulink model name
         simInput                        % struct of inputs to be fed into the simulation
         simElement                      % element object to be simulated
@@ -34,7 +34,6 @@ classdef Simulation < handle
             
             obj.sysModel = 'blankpage';
             obj.simElement = element;
-            obj.simMode = SimMode.NORM;
             obj.simStatus = SimState.INSTANTIATED;
         end
         
@@ -91,9 +90,9 @@ classdef Simulation < handle
             % Simulates the simulink model and generates output
             
             tic
-            fprintf(obj.fileID,'========================================');
+            fprintf(obj.fileID,'========================================\n');
             fprintf(obj.fileID,'Beginning of Simulation:\n');
-            fprintf(obj.fileID,'========================================');
+            fprintf(obj.fileID,'========================================\n');
             
             switch (obj.simMode)
                 case SimMode.NORM
@@ -104,10 +103,10 @@ classdef Simulation < handle
                     obj.logs = logsout;
             end
             
-            fprintf(obj.fileID,'========================================');
+            fprintf(obj.fileID,'========================================\n');
             fprintf(obj.fileID,'End of Simulation');
             fprintf(obj.fileID,'Simulation took %.4g s\n',toc);
-            fprintf(obj.fileID,'========================================');
+            fprintf(obj.fileID,'========================================\n');
 
         end
         
