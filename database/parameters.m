@@ -9,6 +9,10 @@ retParams = struct();
 
 %% Parameters for Rocket Elements
 if (seek == "Jackalope")
+    
+        %Rocket Properties no Fuel Grain
+        retParams.emptyMass = 0;                  % Mass of rocket without fuelgrain                              [Kg]
+        retParams.emptyCG = 0;                    % Center of gravity of rocket without fuelgrain                 []
 end
 
 %% Parameters for Aero Elements
