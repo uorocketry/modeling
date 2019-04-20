@@ -123,6 +123,15 @@ end
 if (seek == "Avionicsv1")
 end 
 
+if (seek == "AvionicsCharacterization")
+    % airbrake properties
+    retParams.airbrakeDeploySpeed = 200;                % speed at which to deploy the airbrakes
+    retParams.airbrakeDeployCmd = 50;                   % commanded, normalized angle at which to deploy airbrakes
+
+    % recovery deployment parameters
+    retParams.descentTwoDeployAltitude = 700;           % altitude at which the 2nd deployment charge triggers      [m]
+end 
+
 %% Parameters for Payload Elements
 if (seek == "payload2019")
 end
