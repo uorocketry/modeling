@@ -105,7 +105,8 @@ if (seek == "SingleChute")
     % other parachute params
     retParams.k_lines = 200;                      % spring constant of modeled lines                              []
     retParams.c_lines = 10;                       % damping ratio of modeled lines                                []
-    retParams.c_d = 1.226;                        % coefficient of drag                                           []
+    retParams.c_dReefed = 0.75;                   % coefficient of drag in reefed configuration                   []
+    retParams.c_dFull = 1.226;                    % coefficient of drag in full configuration                     []
     retParams.mass_p = 1.1;                       % mass of parachute                                             [Kg]
     retParams.inertiaMatP = [0 0 0;               % inertia matrix of parachute                                   [Kg*m^2]
                              0 0 0;

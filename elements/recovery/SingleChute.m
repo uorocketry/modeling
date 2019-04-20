@@ -12,7 +12,8 @@ classdef SingleChute < Recovery
         % other parachute params
         k_lines                                 % spring constant of modeled lines                              []
         c_lines                                 % damping ratio of modeled lines                                []
-        c_d                                     % coefficient of drag                                           []
+        c_dReefed                               % coefficient of drag in reefed configuration                   []
+        c_dFull                                 % coefficient of drag in full configuration                     []
         mass_p                                  % mass of parachute                                             [Kg]
         inertiaMatP                             % inertia matrix of parachute                                   [Kg*m^2]
         
