@@ -151,6 +151,9 @@ classdef Simulation < handle
                           sprintf('%s/%s', modelName, 'clock'));
                 add_block(elementLibraryLoc,...
                           desElementBlockPath);
+                      
+                set_param(desElementBlockPath, 'blockchoice',...
+                          obj.simElement.blockChoice);
                 
                 clockHandles = get_param(sprintf('%s/clock', modelName),...
                                          'PortHandles');
