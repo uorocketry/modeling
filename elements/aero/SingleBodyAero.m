@@ -39,7 +39,7 @@ classdef SingleBodyAero < Aero
         tf                              % fin thickness                                                 [m]
         nf                              % number of fins                                                [dimless]
         
-        % Inportant Locations
+        % important Locations
         Xf                              %fin location from nosetip                                      [m]
         Xc                              %tail cone location from nosetip                                [m]
         Xcp_nose                        %center of pressure location of nosecone from nosetip           [m]
@@ -61,7 +61,7 @@ classdef SingleBodyAero < Aero
         kinVisc                         % kinematic viscosity of air ***                                []
         K                               % experimental coeff for correction of stability derivative     []
         
-        % other params
+        % other parameters
         surfaceR                        % roughness of the surface of rocket                            [micometers]
         finessRatio                     % the 'fineness' ratio of rocket                                []
         initQuaternions                 % initial quaternions defining the starting orientation         []
@@ -76,6 +76,11 @@ classdef SingleBodyAero < Aero
         
         LtoHcoeff                       % lookup for LtoH coefficient                                   []
         LtoHratio                       % breakpoint for LtoH coefficient lookup                        []
+       
+        % airbrake model table data
+        cmdAngleBreakpoints             % breakpoints that specify the input cmd airbrake angle         []
+        speedBreakpoints                % breakpoints that specify the input speed (kinematic, earth)   [m/s] 
+        increaseInAxialDrag             % delta drag for breakpoint values in table for airbrake model  [N]
         
     end
     

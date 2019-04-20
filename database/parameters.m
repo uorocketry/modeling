@@ -64,7 +64,15 @@ if (seek == "Aerov1")
     retParams.del = 0;                            % experimental coeff 1 (to calculate AoA effects)               []
     retParams.eta = 0;                            % experimental coeff 2 (to calculate AoA effects)               []
     retParams.K = 1.1;                            % experimental coeff for correction of stability derivative     []
-        
+   
+    % airbrake model table data
+    retParams.cmdAngleBreakpoints = [0.4 0.6 0.8 1.0];                  % breakpoints that specify the input cmd airbrake angle         []
+    retParams.speedBreakpoints =    [100 150 200 250];                  % breakpoints that specify the input speed (kinematic, earth)   [m/s] 
+    retParams.increaseInAxialDrag = [12.37  28.62  51.65  82.76;...
+                                     20.651 47.02  85.97  137.39;...
+                                     28.37  64.886 118.55 190.08;...
+                                     32.60  74.79  136.88 219.90];      % delta drag for breakpoint values in table for airbrake model  [N]
+
 end 
 
 %% Parameters for Propulsion Elements
