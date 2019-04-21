@@ -20,6 +20,8 @@ classdef SingleChute < Recovery
         % tumbling rocket params
         mass_r                                  % mass of tumbling rocket                                       [Kg]
         X_roff                                  % location of riser connection point to tumbling rocket body    [m]
+        d_rocket                                % average diameter of rocket NOTE: DEFINED IN AERO AS WELL      [m]
+        l_rocket                                % total length of rocket NOTE: DEFINED IN AERO AS WELL          [m]
         inertiaMatR                             % inertia matrix of tumbling rocket (modeled as cylinder)       [Kg*m^2]
         
     end
@@ -31,6 +33,21 @@ classdef SingleChute < Recovery
         
         function initialize(obj)
             obj.assignParameters();
+            
+            % Calculate the reference area used to compute parachute aero
+            % drag force
+            obj.surfArea_p = pi*((obj.d_parachute/2)^2);
+            
+            % Calculate the inertia matricies for both parachute and
+            % tumbling rocket
+            obj.inertiaMatP = [(2/3)*obj.mass_p*((obj.d_parachute/2)^2) 0                                        0;...
+                               0                                        (2/3)*obj.mass_p*((obj.d_parachute/2)^2) 0;...
+                               0                                        0                                        (2/3)*obj.mass_p*((obj.d_parachute/2)^2)];
+            
+            obj.inertiaMatR = [(0.5)*obj.mass_r*((obj.d_rocket/2)^2) 0                                                           0;...
+                               0                                     (1/12)*obj.mass_r*(3*((obj.d_rocket/2)^2) + obj.l_rocket^2) 0;...
+                               0                                     0                                                           (1/12)*obj.mass_r*(3*((obj.d_rocket/2)^2) + obj.l_rocket^2)];
+            
             obj.initialized = true;
         end
     end

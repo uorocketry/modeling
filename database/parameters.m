@@ -100,7 +100,6 @@ if (seek == "SingleChute")
     retParams.d_parachute = 2.1;                  % parachute diameter                                            [m]
     retParams.l_riser = 5;                        % nominal length of riser (modeling all lines)                  [m]
     retParams.X_briddle = 0.5;                    % location of briddle (riser connection point)                  [m]
-    retParams.surfArea_p = 2;                     % the reference surface area of the parachute                   [m^2]
     
     % other parachute params
     retParams.k_lines = 200;                      % spring constant of modeled lines                              []
@@ -108,16 +107,12 @@ if (seek == "SingleChute")
     retParams.c_dReefed = 0.75;                   % coefficient of drag in reefed configuration                   []
     retParams.c_dFull = 1.226;                    % coefficient of drag in full configuration                     []
     retParams.mass_p = 1.1;                       % mass of parachute                                             [Kg]
-    retParams.inertiaMatP = [0 0 0;               % inertia matrix of parachute                                   [Kg*m^2]
-                             0 0 0;
-                             0 0 0];
     
     % tumbling rocket params
     retParams.mass_r = 19.5;                      % mass of tumbling rocket                                       [Kg]
     retParams.X_roff = 0.6;                       % location of riser connection point to tumbling rocket body    [m]
-    retParams.inertiaMatR = [0 0 0;               % inertia matrix of tumbling rocket (modeled as cylinder)       [Kg*m^2]
-                             0 0 0;
-                             0 0 0];
+    retParams.d_rocket = 0.14;                    % average diameter of rocket NOTE: DEFINED IN AERO AS WELL      [m]
+    retParams.l_rocket = 2.803;                   % total length of rocket NOTE: DEFINED IN AERO AS WELL          [m]
 end
 
 %% Parameters for Avionics Elements
@@ -151,7 +146,7 @@ if (seek == "Earthv1")
     retParams.atmospheric_coeff = 0.273;               % emperial coefficient for wind speed calculation                []
 
     % measured wind parameters
-    retParams.referenceWindSpeed = 20;                 % the 'measured' wind speed as a reference                       [m/s]
+    retParams.referenceWindSpeed = 4;                 % the 'measured' wind speed as a reference                       [m/s]
     retParams.referenceWindAltitude = 10;              % the altitude where reference speed was 'measured'              [m]
     retParams.referenceWindAngle = 0;                  % the angle of wind from 'x-axis (ie. encoded wind direction)    [rad]
     
