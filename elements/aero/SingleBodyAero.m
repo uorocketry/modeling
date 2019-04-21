@@ -86,6 +86,19 @@ classdef SingleBodyAero < Aero
         function initialize(obj)  
             obj.assignParameters();
             
+            % Calculate reference area (base of nosecone)
+            obj.Ar = pi*(obj.dn/2)^2;
+                        
+            % Calculate remaining geometries from provided quantities
+            obj.lw = obj.lr - obj. lt;      % fin root length - fin tip length
+            
+            % major fin length
+            % TODO: actually compute this!
+            obj.lm = 0.15;
+            
+            % total horizontal length
+            obj.l_TS = 2*(obj.ls + (obj.df/2))*sin(pi/obj.nf);
+            
             % Calculate componentwise Xcp and CNalpha
             obj.Xcp_nose = 0.466*obj.ln;                % for ogive nosecone
             obj.Xcp_body = obj.ln + 0.5*obj.lb;         % correction for lift
@@ -108,19 +121,7 @@ classdef SingleBodyAero < Aero
             % Calculate fin planer area and exposed fin planer area
             obj.A_fe = 0.8*(obj.lr + obj.lt)*obj.ls;
             obj.A_fp = obj.A_fe + 0.5*obj.df*obj.lr;
-            
-            % Calculate reference area (base of nosecone)
-            obj.Ar = pi*(obj.dn/2)^2;
                         
-            % Calculate remaining geometries from provided quantities
-            obj.lw = obj.lr - obj. lt;      % fin root length - fin tip length
-            
-            % major fin length
-            obj.lm = 0;
-            
-            % total horizontal length
-            obj.l_TS = 2*(obj.ls + (obj.df/2))*sin(pi/obj.nf);
-            
             % Calculate initial orientation
             % TODO: These are values for straight up - need to be modified
             % to be computed from tower vector
