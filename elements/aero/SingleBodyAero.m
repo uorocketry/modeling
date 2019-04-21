@@ -56,33 +56,18 @@ classdef SingleBodyAero < Aero
         Rs                              % fin section ratio                                             []
         k_fb                            % fin-body infereference coeff                                  [] 
         k_bf                            % body-fin intereference coeff                                  []
-        del                             % experimental coeff 1 (to calculate AoA effects)               []
-        eta                             % experimental coeff 2 (to calculate AoA effects)               []
-        kinVisc                         % kinematic viscosity of air ***                                []
         K                               % experimental coeff for correction of stability derivative     []
         
-        % other parameters
-        surfaceR                        % roughness of the surface of rocket                            [micometers]
-        finessRatio                     % the 'fineness' ratio of rocket                                []
+        % initial orientation
         initQuaternions                 % initial quaternions defining the starting orientation         []
-        
-        % Table Data and breakpoints
-        skinFrictionCorrection          % correction factor for skin friction as a function of mach     []
-        baseDrag                        % lookup for base drag as a function of mach                    []
-        noseDrag                        % lookup for nose cone drag as a function of mach               []
-        LeadingEdgeDrag                 % lookup for leading edge drag as a function of mach            []
-        qStagRatio                      % lookup for stagnation ratio as a function of mach             []
-        machRange                       % breakpoints for lookups above                                 []
-        
+                
+        % lookup tables for correction factors
         etaTable                        % table for correction factor used in AOA correction            []
         etaAOABreakpoints               % AOA breakpoints for eta correction factor                     []
         
         delTable                        % table for correction factor used in AOA correction            []
         delAOABreakpoints               % AOA breakpoints for del correction factor                     []
-        
-        LtoHcoeff                       % lookup for LtoH coefficient                                   []
-        LtoHratio                       % breakpoint for LtoH coefficient lookup                        []
-       
+               
         % airbrake model table data
         cmdAngleBreakpoints             % breakpoints that specify the input cmd airbrake angle         []
         speedBreakpoints                % breakpoints that specify the input speed (kinematic, earth)   [m/s] 
@@ -113,6 +98,33 @@ classdef SingleBodyAero < Aero
             
             obj.K_BF = 1 + ((0.5*obj.df)/(obj.ls + 0.5*obj.df));
             obj.CNalpha_fins = obj.K_BF*((4*obj.nf*((obj.ls)/(obj.dn))^2)/(1+sqrt(1 + ((2*obj.lm)/(obj.lr + obj.lt))^2)));
+                        
+            % Calculate fin-body and body-fin infereference coeffs
+            obj.Rs = obj.l_TS/obj.df;
+            
+            obj.k_fb = 0.8065*(obj.Rs^2) + 1.1553*obj.Rs;
+            obj.k_bf = 0.1935*(obj.Rs^2) + 0.8174*obj.Rs + 1;
+            
+            % Calculate fin planer area and exposed fin planer area
+            obj.A_fe = 0.8*(obj.lr + obj.lt)*obj.ls;
+            obj.A_fp = obj.A_fe + 0.5*obj.df*obj.lr;
+            
+            % Calculate reference area (base of nosecone)
+            obj.Ar = pi*(obj.dn/2)^2;
+                        
+            % Calculate remaining geometries from provided quantities
+            obj.lw = obj.lr - obj. lt;      % fin root length - fin tip length
+            
+            % major fin length
+            obj.lm = 0;
+            
+            % total horizontal length
+            obj.l_TS = 2*(obj.ls + (obj.df/2))*sin(pi/obj.nf);
+            
+            % Calculate initial orientation
+            % TODO: These are values for straight up - need to be modified
+            % to be computed from tower vector
+            obj.initQuaternions = [0.5, -0.5, -0.5, -0.5];
             
             obj.initialized = true;
         end

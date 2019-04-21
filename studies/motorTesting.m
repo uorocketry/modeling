@@ -3,7 +3,7 @@ elem.initialize();
 
 sim = Simulation(elem);
 
-sim.endTime = 3.1;
+sim.endTime = 5.1;
 
 sim.timeProfile = 0:sim.simElement.timeStep:sim.endTime;
 
