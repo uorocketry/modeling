@@ -61,8 +61,6 @@ if (seek == "Aerov1")
     retParams.Rs = 0;                             % fin section ratio                                             []
     retParams.k_fb = 0;                           % fin-body infereference coeff                                  [] 
     retParams.k_bf = 0;                           % body-fin intereference coeff                                  []
-    retParams.del = 0;                            % experimental coeff 1 (to calculate AoA effects)               []
-    retParams.eta = 0;                            % experimental coeff 2 (to calculate AoA effects)               []
     retParams.K = 1.1;                            % experimental coeff for correction of stability derivative     []
    
     % airbrake model table data
@@ -72,6 +70,13 @@ if (seek == "Aerov1")
                                      20.651 47.02  85.97  137.39;...
                                      28.37  64.886 118.55 190.08;...
                                      32.60  74.79  136.88 219.90];      % delta drag for breakpoint values in table for airbrake model  [N]
+    
+    % Table Data and breakpoints
+    retParams.etaTable = [0.6 0.63 0.66 0.68 0.71 0.73 0.74 0.75 0.76];             % table for correction factor used in AOA correction            []
+    retParams.etaAOABreakpoints = [4 6 8 10 12 14 16 18 20];                        % AOA breakpoints for eta correction factor                     []
+
+    retParams.delTable = [0.783 0.8625 0.925 0.9417 0.96 0.9725 0.975 0.977 0.978]; % table for correction factor used in AOA correction            []
+    retParams.delAOABreakpoints = [4 6 8 10 12 14 16 18 20];                        % AOA breakpoints for del correction factor                     []
 
 end 
 
@@ -169,6 +174,10 @@ if (seek == "Earthv1")
     retParams.temperatureAtGround = 293;               % the 'measured' temperature on 0 AGL                     [K]
     retParams.pressureAtStaticAlt = 79900;             % the 'measured' pressure at static altitude              [Pa]
     retParams.pressureAtGround = 101325;               % the 'measured' pressure at 0 AGL                        [Pa]
+
+    % emperical dynamic viscosity of air
+    retParams.altiBreakpoints = [0 1000 2000 3000 4000 5000 6000 7000 8000 9000];                             % altitude (ASL) breakpoints used to lookup dynamic viscosity of air    [m]
+    retParams.dynamicViscosityAir = 10^(-5)*[1.789 1.758 1.726 1.694 1.661 1.628 1.595 1.561 1.527 1.493];    % dynamic viscosity table data                                          [N s/m^2]
 
 end
 

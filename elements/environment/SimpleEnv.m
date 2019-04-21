@@ -19,6 +19,10 @@ classdef SimpleEnv < Element
         pressureAtStaticAlt                         % the 'measured' pressure at static altitude              [Pa]
         pressureAtGround                            % the 'measured' pressure at 0 AGL                        [Pa]
         
+        % emperical dynamic viscosity of air
+        altiBreakpoints                             % altitude (ASL) breakpoints                              [m]
+        dynamicViscosityAir                         % dynamic viscosity table data                            [N s/m^2]
+        
         % Earth params
         RADIUS_EARTH = 6371*10^3                    % radius of Earth                                         [m]
         MASS_EARTH = 5.972*10^24                    % mass of Earth                                           [kg]

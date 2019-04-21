@@ -74,6 +74,12 @@ classdef SingleBodyAero < Aero
         qStagRatio                      % lookup for stagnation ratio as a function of mach             []
         machRange                       % breakpoints for lookups above                                 []
         
+        etaTable                        % table for correction factor used in AOA correction            []
+        etaAOABreakpoints               % AOA breakpoints for eta correction factor                     []
+        
+        delTable                        % table for correction factor used in AOA correction            []
+        delAOABreakpoints               % AOA breakpoints for del correction factor                     []
+        
         LtoHcoeff                       % lookup for LtoH coefficient                                   []
         LtoHratio                       % breakpoint for LtoH coefficient lookup                        []
        
@@ -81,6 +87,9 @@ classdef SingleBodyAero < Aero
         cmdAngleBreakpoints             % breakpoints that specify the input cmd airbrake angle         []
         speedBreakpoints                % breakpoints that specify the input speed (kinematic, earth)   [m/s] 
         increaseInAxialDrag             % delta drag for breakpoint values in table for airbrake model  [N]
+        
+        % aero consts
+        REC = 5*10^5;                   % critical Reylnolds number according to Mandell et al [1973]   [] 
         
     end
     
