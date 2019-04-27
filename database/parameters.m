@@ -11,17 +11,18 @@ retParams = struct();
 if (seek == "Jackalope")
     
         %Rocket Properties no Fuel Grain
-        retParams.emptyMass = 0;                  % Mass of rocket without fuelgrain                              [Kg]
-        retParams.emptyCG = 0;                    % Center of gravity of rocket without fuelgrain                 [m]
+        retParams.emptyMass = 16.07851;                 % Mass of rocket without fuelgrain                              [Kg]
+        retParams.emptyCG = 0.166;                      % Center of gravity of rocket without fuelgrain                 [m]
 end
 
 %% Parameters for Aero Elements
 if (seek == "Aerov1")
             
     %Inertia Matrix
-    retParams.InertiaMatNoEngine = [0 0 0;
-                                    0 0 0;
-                                    0 0 0];             % inertia matrix of rocket (flight config)                      [Kg*m^2]
+    retParams.InertiaMatNoEngine = [0.06072467685   0.005038703691  -0.001041429427;
+                                    0.005038703691  8.592166229     0.0000823036698;
+                                    -0.001041429427 0.0000823036698 8.591942518];             
+                                                        % inertia matrix of rocket (flight config)                      [Kg*m^2]
 
     %body diameters
     retParams.dn = 0.14;                                % diameter at nosecone base                                     [m]
@@ -142,20 +143,20 @@ end
 if (seek == "Earthv1")
         
     % emperical wind parameters
-    retParams.Z_roughness = 0.03;                      % roughness length of terrain                                    []
-    retParams.atmospheric_coeff = 0.273;               % emperial coefficient for wind speed calculation                []
+    retParams.Z_roughness = 0.03;                       % roughness length of terrain                                    []
+    retParams.atmospheric_coeff = 0.273;                % emperial coefficient for wind speed calculation                []
 
     % measured wind parameters
-    retParams.referenceWindSpeed = 4;                 % the 'measured' wind speed as a reference                       [m/s]
-    retParams.referenceWindAltitude = 10;              % the altitude where reference speed was 'measured'              [m]
-    retParams.referenceWindAngle = 0;                  % the angle of wind from 'x-axis (ie. encoded wind direction)    [rad]
+    retParams.referenceWindSpeed = 4;                   % the 'measured' wind speed as a reference                       [m/s]
+    retParams.referenceWindAltitude = 10;               % the altitude where reference speed was 'measured'              [m]
+    retParams.referenceWindAngle = 0;                   % the angle of wind from 'x-axis (ie. encoded wind direction)    [rad]
     
     % measured static conditions used to interpolate
-    retParams.referenceStaticAltitude = 2000;          % the altitude where static conditions were 'measured'           [m]
-    retParams.temperatureAtStaticAlt = 253;            % the 'measured' temperature at static altitude                  [K]
-    retParams.temperatureAtGround = 293;               % the 'measured' temperature on 0 AGL                            [K]
-    retParams.pressureAtStaticAlt = 79900;             % the 'measured' pressure at static altitude                     [Pa]
-    retParams.pressureAtGround = 101325;               % the 'measured' pressure at 0 AGL                               [Pa]
+    retParams.referenceStaticAltitude = 2000;           % the altitude where static conditions were 'measured'           [m]
+    retParams.temperatureAtStaticAlt = 253;             % the 'measured' temperature at static altitude                  [K]
+    retParams.temperatureAtGround = 293;                % the 'measured' temperature on 0 AGL                            [K]
+    retParams.pressureAtStaticAlt = 79900;              % the 'measured' pressure at static altitude                     [Pa]
+    retParams.pressureAtGround = 101325;                % the 'measured' pressure at 0 AGL                               [Pa]
 
     % emperical dynamic viscosity of air
     retParams.altiBreakpoints = [0 1000 2000 3000 4000 5000 6000 7000 8000 9000];                             % altitude (ASL) breakpoints used to lookup dynamic viscosity of air    [m]
