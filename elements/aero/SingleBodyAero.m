@@ -84,7 +84,7 @@ classdef SingleBodyAero < Aero
         end
         
         function initialize(obj)  
-            obj.assignParameters();
+            params = obj.assignParameters();
             
             % Calculate reference area (base of nosecone)
             obj.Ar = pi*(obj.dn/2)^2;
@@ -123,9 +123,15 @@ classdef SingleBodyAero < Aero
             obj.A_fp = obj.A_fe + 0.5*obj.df*obj.lr;
                         
             % Calculate initial orientation
-            % TODO: These are values for straight up - need to be modified
-            % to be computed from tower vector
-            obj.initQuaternions = [0.5, -0.5, -0.5, -0.5];
+            
+            phi_2 = params.lauchTowerOrientation(1)/2;
+            theta_2 = params.lauchTowerOrientation(2)/2; 
+            psi_2 = params.lauchTowerOrientation(3)/2;
+            
+            obj.initQuaternions = [ cos(phi_2)*cos(theta_2)*cos(psi_2) + sin(phi_2)*sin(theta_2)*sin(psi_2);...
+                                    sin(phi_2)*cos(theta_2)*cos(psi_2) - cos(phi_2)*sin(theta_2)*sin(psi_2);...
+                                    cos(phi_2)*sin(theta_2)*cos(psi_2) + sin(phi_2)*cos(theta_2)*sin(psi_2);...
+                                    cos(phi_2)*cos(theta_2)*sin(psi_2) - sin(phi_2)*sin(theta_2)*cos(psi_2)];
             
             obj.initialized = true;
         end

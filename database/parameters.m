@@ -65,7 +65,12 @@ if (seek == "Aerov1")
 
     retParams.delTable = [0.783 0.8625 0.925 0.9417 0.96 0.9725 0.975 0.977 0.978];     % table for correction factor used in AOA correction            []
     retParams.delAOABreakpoints = [4 6 8 10 12 14 16 18 20];                            % AOA breakpoints for del correction factor                     [degree]
-
+    
+    % Data to pass along into initialization method of SingleBodyAero
+    % ie. tower length and orientation
+    towerParams = parameters('FSv1');
+    retParams.launchTowerLength = towerParams.launchTowerLength;
+    retParams.lauchTowerOrientation = towerParams.lauchTowerOrientation;
 end 
 
 %% Parameters for Propulsion Elements
@@ -122,8 +127,8 @@ end
 
 if (seek == "AvionicsCharacterization")
     % airbrake properties
-    retParams.airbrakeDeploySpeed = 200;                % speed at which to deploy the airbrakes                    [m/s]
-    retParams.airbrakeDeployCmd = 0.5;                  % commanded, normalized angle at which to deploy airbrakes  []
+    retParams.airbrakeDeploySpeed = 0;                  % speed at which to deploy the airbrakes                    [m/s]
+    retParams.airbrakeDeployCmd = 0.0;                  % commanded, normalized angle at which to deploy airbrakes  []
 
     % recovery deployment parameters
     retParams.descentTwoDeployAltitude = 700;           % altitude at which the 2nd deployment charge triggers      [m]
@@ -135,8 +140,11 @@ end
 
 %% Parameters for Sequencer Elements
 if (seek == "FSv1")
-    retParams.initialFlightState = 0;                  % the starting state of flight (typically pre-ignition)      [dimless]
-    retParams.launchTower = [0;0;5.18];                % vector defining launch tower wrt earth-fixed               [rad]
+    retParams.initialFlightState = 0;                   % the starting state of flight (typically pre-ignition)         [dimless]
+    retParams.launchTowerLength = 5.18;                 % length of launch tower                                        [m]
+    retParams.lauchTowerOrientation = [0;...
+                                       (270+10)*(pi/180);...
+                                       0];              % orientation (roll, pitch, yaw) of launch tower                [degree]
 end
 
 %% Parameters for Environment Elements

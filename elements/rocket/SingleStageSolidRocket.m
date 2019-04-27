@@ -15,7 +15,7 @@ classdef SingleStageSolidRocket < Rocket
             obj.propulsion = SolidMotor('SolidMotor');
             obj.recovery = SingleChute('SingleChute');
             obj.sequencer = FSv1('FSv1');
-            obj.avionics = AvionicsV1('Avionicsv1');
+            obj.avionics = AvionicsCharacterization('AvionicsCharacterization');
             obj.payload = Payload2019();
         end
         
