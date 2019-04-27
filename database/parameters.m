@@ -105,7 +105,7 @@ if (seek == "SingleChute")
     % parachute system geometry
     retParams.d_parachute = 2.1;                  % parachute diameter                                            [m]
     retParams.l_riser = 5;                        % nominal length of riser (modeling all lines)                  [m]
-    retParams.X_briddle = 0.5;                    % location of briddle (riser connection point)                  [m]
+    retParams.X_briddle = -0.5;                   % location of briddle (riser connection point)                  [m]
     
     % other parachute params
     retParams.k_lines = 200;                      % spring constant of modeled lines                              []
