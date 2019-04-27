@@ -12,7 +12,7 @@ if (seek == "Jackalope")
     
         %Rocket Properties no Fuel Grain
         retParams.emptyMass = 16.07851;                 % Mass of rocket without fuelgrain                              [Kg]
-        retParams.emptyCG = 0.166;                      % Center of gravity of rocket without fuelgrain                 [m]
+        retParams.emptyCG = 0.166771;                   % Center of gravity of rocket without fuelgrain                 [m]
 end
 
 %% Parameters for Aero Elements
