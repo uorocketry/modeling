@@ -11,17 +11,17 @@ retParams = struct();
 if (seek == "Jackalope")
     
         %Rocket Properties no Fuel Grain
-        retParams.emptyMass = 16.07851;                 % Mass of rocket without fuelgrain                              [Kg]
-        retParams.emptyCG = 0.166771;                   % Center of gravity of rocket without fuelgrain                 [m]
+        retParams.emptyMass = 14.9624374;               % Mass of rocket without fuelgrain                              [Kg]
+        retParams.emptyCG = 1.7244487;                  % Center of gravity of rocket without fuelgrain                 [m]
 end
 
 %% Parameters for Aero Elements
 if (seek == "Aerov1")
             
     %Inertia Matrix
-    retParams.InertiaMatNoEngine = [0.06072467685   0.005038703691  -0.001041429427;
-                                    0.005038703691  8.592166229     0.0000823036698;
-                                    -0.001041429427 0.0000823036698 8.591942518];             
+    retParams.InertiaMatNoEngine = [0.04797668981    0.007561700154   -0.0000102875134;
+                                    0.007561700154   8.141342134      -0.0000278034416;
+                                    -0.0000102875134 -0.0000278034416 8.140965668];             
                                                         % inertia matrix of rocket (flight config)                      [Kg*m^2]
 
     %body diameters

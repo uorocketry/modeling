@@ -5,7 +5,7 @@ classdef SingleStageSolidRocket < Rocket
     properties
         %Rocket Properties no Fuel Grain
         emptyMass                       % Mass of rocket without fuelgrain                              [Kg]
-        emptyCG                         % Center of gravity of rocket without fuelgrain                 []
+        emptyCG                         % Center of gravity of rocket without fuelgrain                 [m]
     end
     
     methods
