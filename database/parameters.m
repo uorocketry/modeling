@@ -43,18 +43,23 @@ if (seek == "Aerov1")
     retParams.ls = 0.138;                               % fin horizontal length                                         [m]
     retParams.tf = 0.003;                               % fin thickness                                                 [m]
     retParams.nf = 3;                                   % number of fins                                                [dimless]
-
+    
+    % given areas
+    % TODO: Actually calculate or work this out
+    retParams.A_nSide = 0.03836;                        % projected area of nosecone (sideview)                         [m^2]
+    
     % Inportant Locations
     retParams.Xf = 2.553;                               %Fin location from nosetip                                      [m]
     retParams.Xc = 2.803;                               %Tail cone location from nosetip                                [m]
     
     % other coeffs
-    retParams.K = 1.1;                                                                  % experimental coeff for correction of stability derivative     []
+    retParams.K = 1.1;                                                                  % experimental coeff for correction of stability derivative         []
    
     % airbrake model table data
-    retParams.cmdAngleBreakpoints = [0.4 0.6 0.8 1.0];                                  % breakpoints that specify the input cmd airbrake angle         []
-    retParams.speedBreakpoints =    [100 150 200 250];                                  % breakpoints that specify the input speed (kinematic, earth)   [m/s] 
-    retParams.increaseInAxialDrag = [12.37  28.62  51.65  82.76;...
+    retParams.cmdAngleBreakpoints = [0 0.4 0.6 0.8 1.0];                                % breakpoints that specify the input cmd airbrake angle             []
+    retParams.speedBreakpoints =    [100 150 200 250];                                  % breakpoints that specify the input speed (kinematic, earth)       [m/s] 
+    retParams.increaseInAxialDrag = [0      0      0      0;...
+                                     12.37  28.62  51.65  82.76;...
                                      20.651 47.02  85.97  137.39;...
                                      28.37  64.886 118.55 190.08;...
                                      32.60  74.79  136.88 219.90];                      % delta drag for breakpoint values in table for airbrake model  [N]
@@ -108,8 +113,8 @@ if (seek == "SingleChute")
     retParams.X_briddle = -0.5;                   % location of briddle (riser connection point)                  [m]
     
     % other parachute params
-    retParams.k_lines = 200;                      % spring constant of modeled lines                              []
-    retParams.c_lines = 10;                       % damping ratio of modeled lines                                []
+    retParams.k_lines = 2000;                     % spring constant of modeled lines                              []
+    retParams.c_lines = 100;                      % damping ratio of modeled lines                                []
     retParams.c_dReefed = 0.75;                   % coefficient of drag in reefed configuration                   []
     retParams.c_dFull = 1.226;                    % coefficient of drag in full configuration                     []
     retParams.mass_p = 1.1;                       % mass of parachute                                             [Kg]
@@ -143,7 +148,7 @@ if (seek == "FSv1")
     retParams.initialFlightState = 0;                   % the starting state of flight (typically pre-ignition)         [dimless]
     retParams.launchTowerLength = 5.18;                 % length of launch tower                                        [m]
     retParams.lauchTowerOrientation = [0;...
-                                       (270+10)*(pi/180);...
+                                       (-90)*(pi/180);...
                                        0];              % orientation (roll, pitch, yaw) of launch tower                [degree]
 end
 

@@ -16,6 +16,7 @@ classdef SingleStageSolidRocket < Rocket
             obj.recovery = SingleChute('SingleChute');
             obj.sequencer = FSv1('FSv1');
             obj.avionics = AvionicsCharacterization('AvionicsCharacterization');
+            obj.environment = SimpleEnv("Earthv1");
             obj.payload = Payload2019();
         end
         
@@ -29,6 +30,7 @@ classdef SingleStageSolidRocket < Rocket
             obj.sequencer.initialize();
             obj.avionics.initialize();
             obj.payload.initialize();
+            obj.environment.initialize();
             
             obj.initialized = true;
         end

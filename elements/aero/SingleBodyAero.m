@@ -12,6 +12,7 @@ classdef SingleBodyAero < Aero
         df                              % diameter of body at leading point of fin                      [m]
         du                              % diameter at body at starting of tail cone                     [m]
         dd                              % diameter of bottom on tail cone                               [m]
+        deq                             % equivalent diameter used for moment damping                   [m]
         
         %body lengths
         ln                              % length of nosecone                                            [m]
@@ -29,6 +30,7 @@ classdef SingleBodyAero < Aero
         A_ll                            % exposed area of launch lug                                    [m^2]
         A_ab                            % fully deployed airbrake area                                  [m^2]
         A_bwt                           % wetted area body                                              [m^2]
+        A_nSide                         % projected area of nosecone (sideview)                         [m^2]
         
         %fin geometry
         lr                              % fin root length                                               [m]
@@ -121,6 +123,9 @@ classdef SingleBodyAero < Aero
             % Calculate fin planer area and exposed fin planer area
             obj.A_fe = 0.8*(obj.lr + obj.lt)*obj.ls;
             obj.A_fp = obj.A_fe + 0.5*obj.df*obj.lr;
+            
+            % Calculate equivalent diameter Deq for moment damping
+            obj.deq = (obj.A_nSide + (obj.l_TR-obj.ln)*2*(obj.dn/2))/(obj.l_TR);
                         
             % Calculate initial orientation
             

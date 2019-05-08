@@ -9,6 +9,7 @@ classdef Rocket < Element
         sequencer
         avionics
         payload
+        environment
     end
     
     methods
@@ -47,6 +48,14 @@ classdef Rocket < Element
             assert(isa(val,'Payload'),'payload needs to be of type Payload, currently is a %s.',class(val));
             obj.payload = val;
         end
+        
+        %TODO: Make a generic parent class for all environments and change
+        %      this assertion
+        function set.environment(obj,val)
+            assert(isa(val,'SimpleEnv'),'environment needs to be of type SimpleEnv, currently is a %s.',class(val));
+            obj.environment = val;
+        end
+
     end
 end
 
