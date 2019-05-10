@@ -21,7 +21,7 @@ elem.initialize();
 
 sim = Simulation(elem);
 
-sim.endTime = 200;
+sim.endTime = 50;
 sim.timeProfile = 0:sim.simElement.timeStep:sim.endTime;
 
 sim.simInput = struct();

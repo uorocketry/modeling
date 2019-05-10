@@ -33,7 +33,7 @@ sim = Simulation(elem);
 sim.endTime = 200;
 
 sim.timeProfile = 0:sim.simElement.timeStep:sim.endTime;
-altitudeProfile = [0 3500];
+altitudeProfile = [0 10000];
 
 altProfileTime = [0 sim.endTime];
 
@@ -42,6 +42,7 @@ sim.simInput.altitude_E = interp1(altProfileTime, altitudeProfile, sim.timeProfi
 
 bdclose all;
 sim.configureModel();
+sim.openModel();
 
 %% Run the simulation and perform any sort of study
 %  Different studies will require different #s of runs and different sets
