@@ -1,0 +1,1 @@
+# Time (s),Angle of attack (°),CP location (cm),Mach number (?),Drag coefficient (?),Axial drag coefficient (?),Normal force coefficient (?),Pitch moment coefficient (?),Yaw moment coefficient (?),Side force coefficient (?),Roll moment coefficient (?),Roll forcing coefficient (?),Roll damping coefficient (?),Pitch damping coefficient (?)

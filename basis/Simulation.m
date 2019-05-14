@@ -105,7 +105,7 @@ classdef Simulation < handle
             
             fprintf(obj.fileID,'========================================\n');
             fprintf(obj.fileID,'End of Simulation');
-            fprintf(obj.fileID,'Simulation took %.4g s\n',toc);
+            fprintf(obj.fileID,': Simulation took %.4g s\n',toc);
             fprintf(obj.fileID,'========================================\n');
 
         end
