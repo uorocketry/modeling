@@ -132,8 +132,8 @@ end
 
 if (seek == "AvionicsCharacterization")
     % airbrake properties
-    retParams.airbrakeDeploySpeed = 0;                  % speed at which to deploy the airbrakes                    [m/s]
-    retParams.airbrakeDeployCmd = 0.0;                  % commanded, normalized angle at which to deploy airbrakes  []
+    retParams.airbrakeDeploySpeed = 0;                   % speed at which to deploy the airbrakes                    [m/s]
+    retParams.airbrakeDeployCmd = 0;                     % commanded, normalized angle at which to deploy airbrakes  []
 
     % recovery deployment parameters
     retParams.descentTwoDeployAltitude = 700;           % altitude at which the 2nd deployment charge triggers      [m]
@@ -148,7 +148,7 @@ if (seek == "FSv1")
     retParams.initialFlightState = 0;                   % the starting state of flight (typically pre-ignition)         [dimless]
     retParams.launchTowerLength = 5.18;                 % length of launch tower                                        [m]
     retParams.lauchTowerOrientation = [0;...
-                                       (-90)*(pi/180);...
+                                       (-75)*(pi/180);...
                                        0];              % orientation (roll, pitch, yaw) of launch tower                [degree]
 end
 
@@ -160,7 +160,7 @@ if (seek == "Earthv1")
     retParams.atmospheric_coeff = 0.273;                % emperial coefficient for wind speed calculation                []
 
     % measured wind parameters
-    retParams.referenceWindSpeed = 4;                   % the 'measured' wind speed as a reference                       [m/s]
+    retParams.referenceWindSpeed = 1;                   % the 'measured' wind speed as a reference                       [m/s]
     retParams.referenceWindAltitude = 10;               % the altitude where reference speed was 'measured'              [m]
     retParams.referenceWindAngle = 0;                   % the angle of wind from 'x-axis (ie. encoded wind direction)    [rad]
     

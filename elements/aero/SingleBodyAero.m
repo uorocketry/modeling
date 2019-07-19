@@ -10,7 +10,7 @@ classdef SingleBodyAero < Aero
         dn                              % diameter at nosecone base                                     [m]
         db                              % average diameter of body                                      [m]
         df                              % diameter of body at leading point of fin                      [m]
-        du                              % diameter at body at starting of tail cone                     [m]
+        du                              % diameter of body at starting of tail cone                     [m]
         dd                              % diameter of bottom on tail cone                               [m]
         deq                             % equivalent diameter used for moment damping                   [m]
         
@@ -23,6 +23,7 @@ classdef SingleBodyAero < Aero
         
         %body areas
         Ar                              % reference area (base of nosecone)                             [m^2]
+        Ap                              % planform area of rocket                                       [m^2]
         A_fp                            % fin planform area                                             [m^2]
         A_fe                            % exposed fin planform area                                     [m^2]
         A_fwt                           % wetted area fins                                              [m^2]
@@ -90,24 +91,33 @@ classdef SingleBodyAero < Aero
             
             % Calculate reference area (base of nosecone)
             obj.Ar = pi*(obj.dn/2)^2;
+            
+            % Calculate planform aera of rocket
+            obj.Ap = obj.dn*obj.lb;
                         
             % Calculate remaining geometries from provided quantities
             obj.lw = obj.lr - obj. lt;      % fin root length - fin tip length
             
             % major fin length
             % TODO: actually compute this!
-            obj.lm = 0.15;
+            obj.lm = 0.14;
+            
+            % Calculate the wetted area of one fin
+            obj.A_fwt = ((obj.lr + obj.lt)/2)*obj.ls;
             
             % total horizontal length
             obj.l_TS = 2*(obj.ls + (obj.df/2))*sin(pi/obj.nf);
             
             % Calculate componentwise Xcp and CNalpha
-            obj.Xcp_nose = 0.466*obj.ln;                % for ogive nosecone
-            obj.Xcp_body = obj.ln + 0.5*obj.lb;         % correction for lift
+            obj.Xcp_nose = (obj.ln*obj.Ar - 0.004552288224)/(obj.Ar);       %0.466*obj.ln;                % for ogive nosecone
+            obj.Xcp_body = obj.ln + 0.5*obj.lb;                             % correction for lift
             
-            obj.Xcp_fins = obj.Xf + ...
-                           (obj.lm*(obj.lr + 2*obj.lt))/(3*(obj.lr + obj.lt)) + ...
-                           0.6*(obj.lr + obj.lt - ((obj.lr*obj.lt)/(obj.lr+obj.lt)));
+%             obj.Xcp_fins = obj.Xf + ...
+%                            (obj.lm*(obj.lr + 2*obj.lt))/(3*(obj.lr + obj.lt)) + ...
+%                            0.6*(obj.lr + obj.lt - ((obj.lr*obj.lt)/(obj.lr+obj.lt)));
+                       
+            obj.Xcp_fins = (obj.lw/3)*((obj.lr + 2*obj.lt)/(obj.lr + obj.lt))...
+                           + (1/6)*((obj.lr^2 + obj.lt^2 + obj.lr*obj.lt)/(obj.lr + obj.lt));
             
             obj.CNalpha_nose = 2;                       % hmmmm, this seems odd
             
