@@ -54,6 +54,7 @@ classdef Simulation < handle
             obj.process();
             
             res = obj.res;
+            bdclose all;
         end
         
         function obj = configureModel(obj)
