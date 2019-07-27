@@ -1,5 +1,5 @@
 %=========================================================================%
-% Airbrake Lookup Control Study
+% Model Validation Study
 % Date: April 28th 2019
 %
 % Description:
