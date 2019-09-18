@@ -104,6 +104,18 @@ if (seek == "SolidMotor")
 
 end
 
+if (seek == "HREV1")  
+    % engine locations
+    retParams.X_GM = 2.244;                                                             % engine location from nose tip                     [m]
+    retParams.X_CG_full = 0.2745;                                                       % location of cg of engine from X_GM                [m]
+
+    % other motor params
+    retParams.Ae = 0.001;                                                               % exit area of nozzle                               [m^2]
+
+    retParams.m_wet = 6.258;                                                            % full mass of motor                                [Kg]
+    retParams.m_dry = 2.835;                                                            % empty mass of motor                               [Kg]
+end
+
 %% Parameters for Recovery Elements
 if (seek == "SingleChute")
     
