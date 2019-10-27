@@ -316,6 +316,9 @@ end
 %% Parameters for Pressure Vessels
 
 if (seek == "NitrousTank")
+    % nitrous saturation pressures (C->kPa)
+    retParams.temperatureBreakpoints = [-90.82 -90 -88.46 -85 -80 -75 -70 -65 -60 -55 -50 -45 -40 -35 -30 -25 -20 -15 -10 -5 0 5 10 15 20 25 30 35 36.42];
+    retParams.pressure = [87.73 92.29 101.325 124.2 164.2 213.6 273.6 345.7 431.5 532.3 649.9 785.8 941.7 1119 1321 1547 1801 2083 2397 2744 3127 3547 4007 4510 5060 5660 6315 7033 7251];
 end
 
 end
