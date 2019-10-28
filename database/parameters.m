@@ -173,71 +173,36 @@ if (seek == "HREV1")
     retParams.X_CG_full = 0.2745;                                                       % location of cg of engine from X_GM                [m]
 
     % other motor params
-    retParams.Ae = 0.001;                                                               % exit area of nozzle                               [m^2]
-
     retParams.m_wet = 6.258;                                                            % full mass of motor                                [Kg]
     retParams.m_dry = 2.835;                                                            % empty mass of motor                               [Kg]
-end
 
-%% Parameters for Recovery Elements
-if (seek == "SingleChute")
+    % injector parameters
+    retParams.A_ih = 2.4476e-6;                                                         % aera of injector holes                            [m^2]
+    retParams.nIHoles = 16;                                                             % number of injector holes                          [dimless]
+    retParams.injector_Cd = 0.45;                                                       % coefficient of discharge of injector              [dimless]
     
-    % parachute system geometry
-    retParams.d_parachute = 2.1;                  % parachute diameter                                            [m]
-    retParams.l_riser = 5;                        % nominal length of riser (modeling all lines)                  [m]
-    retParams.X_briddle = -0.5;                   % location of briddle (riser connection point)                  [m]
-    
-    % other parachute params
-    retParams.k_lines = 2000;                     % spring constant of modeled lines                              []
-    retParams.c_lines = 100;                      % damping ratio of modeled lines                                []
-    retParams.c_dReefed = 0.75;                   % coefficient of drag in reefed configuration                   []
-    retParams.c_dFull = 1.226;                    % coefficient of drag in full configuration                     []
-    retParams.mass_p = 1.1;                       % mass of parachute                                             [Kg]
-    
-    % tumbling rocket params
-    retParams.mass_r = 19.5;                      % mass of tumbling rocket                                       [Kg]
-    retParams.X_roff = 0.6;                       % location of riser connection point to tumbling rocket body    [m]
-    retParams.d_rocket = 0.14;                    % average diameter of rocket NOTE: DEFINED IN AERO AS WELL      [m]
-    retParams.l_rocket = 2.803;                   % total length of rocket NOTE: DEFINED IN AERO AS WELL          [m]
-end
+    % paraffin regression model parameters
+    retParams.a = 0.155;                                                                % emperical value : a                               [dimless]
+    retParams.n = 0.555;                                                                % emperical value : n                               [dimless]
 
+    % nozzle parameters
+    retParams.Ae = 0.0058;                                                              % exit area of nozzle                               [m^2]
+    retParams.At = 0.001;                                                               % throat area of nozzle                             [m^2]
+    retParams.Ai = 0.001;                                                               % inlet area of nozzle                              [m^2]
 
-%% Parameters for Propulsion Elements
-if (seek == "SolidMotor")
-    
-    % engine locations
-    retParams.X_GM = 2.244;                                                             % engine location from nose tip                     [m]
-    retParams.X_CG_full = 0.2745;                                                       % location of cg of engine from X_GM                [m]
-    
-    % other motor params
-    retParams.Ae = 0.001;                                                               % exit area of nozzle                               [m^2]
-    retParams.thrustProfile = [0 0.12 0.21 0.6 0.9 1.2 1.5 1.8 2.1 2.4 2.7 2.99 3.0;...
-                               0 2600 2482 2715 2876 2938 2889 2785 2573 2349 2182 85 0];                  
-                                                                                        % a thrust-time profile to describe thrust          [N]
-                                                  
-    retParams.m_wet = 6.258;                                                            % full mass of motor                                [Kg]
-    retParams.m_dry = 2.835;                                                            % empty mass of motor                               [Kg]
-    retParams.massProfile = [0 0.12 0.21 0.6 0.9 1.2 1.5 1.8 2.1 2.4 2.7 2.99 3.0;...
-                             3.423 3.35069 3.24469 2.77495 2.38622 1.98198 1.57684 1.18234 0.809811 0.467594 0.152563 .000196996 0];
-                                                                                        % mass as a function of time                        [Kg]  
-    
-    % grain geometery
-    retParams.d_initalgrainInner = 0.05;                                                % grain initial inner diameter                      [m]
-    retParams.d_grainOuter = 0.14;                                                      % grain outerdiameter                               [m]
-    retParams.l_grain = 0.548;                                                          % grain length                                      [m]
+    % thermochemical properties
+    retParams.k = 1.27;                                                                 % specific heat ratio for N2O + Paraffin            [dimless]
+    retParams.gasConst = 385;                                                           % gas constant for N2O + Paraffin                   [Joule/(Kg*K)]
 
-end
+    % fudge factors (efficiencies)
+    retParams.etaCombustion = 0.95;                                                     % combustion efficiency                             [dimless]
+    retParams.etaNozzle = 0.98;                                                         % nozzle efficiency                                 [dimless]
 
-if (seek == "HREV1")  
-    % engine locations
-    retParams.X_GM = 2.244;                                                             % engine location from nose tip                     [m]
-    retParams.X_CG_full = 0.2745;                                                       % location of cg of engine from X_GM                [m]
-
-    % other motor params
-    retParams.Ae = 0.001;                                                               % exit area of nozzle                               [m^2]
-
-    retParams.m_wet = 6.258;                                                            % full mass of motor                                [Kg]
-    retParams.m_dry = 2.835;                                                            % empty mass of motor                               [Kg]
+    % fuel grain parameters
+    retParams.Dfg_inner = 0.04;                                                         % inner diameter of fuel grain (init port diameter) [m]
+    retParams.Dfg_outer = 0.134;                                                        % outer diamter of fuel grain                       [m]
+    retParams.Lfg = 0.3;                                                                % length of fuel grain                              [m]
+    retParams.rho_fuel = 930;                                                           % density of paraffin                               [Kg/m^3]
 end
 
 %% Parameters for Recovery Elements
@@ -314,11 +279,16 @@ if (seek == "Earthv1")
 end
 
 %% Parameters for Pressure Vessels
-
-if (seek == "NitrousTank")
+if (seek == "nitrousTank1")
     % nitrous saturation pressures (C->kPa)
     retParams.temperatureBreakpoints = [-90.82 -90 -88.46 -85 -80 -75 -70 -65 -60 -55 -50 -45 -40 -35 -30 -25 -20 -15 -10 -5 0 5 10 15 20 25 30 35 36.42];
     retParams.pressure = [87.73 92.29 101.325 124.2 164.2 213.6 273.6 345.7 431.5 532.3 649.9 785.8 941.7 1119 1321 1547 1801 2083 2397 2744 3127 3547 4007 4510 5060 5660 6315 7033 7251];
+   
+    % nitrous density table (C->Kg/m^3)
+    retParams.density = [1222.8 1220.6 1216.3 1206.7 1192.7 1178.3 1163.7 1148.8 1133.6 1118.0 1118.0 1085.6 1068.8 1051.4 1033.4 1014.8 995.4 975.2 953.9 931.4 907.4 881.6 853.5 822.2 786.6 743.9 688.0 589.4 452];
+    
+    % initial mass of nitrous oxide [kg]
+    retParams.initOxiMass = 14; 
 end
 
 end

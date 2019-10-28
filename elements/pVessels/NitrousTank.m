@@ -3,7 +3,15 @@ classdef NitrousTank < PVessel
     %   Detailed explanation goes here
     
     properties
+        % nitrous saturation pressures (C->kPa)
+        temperatureBreakpoints
+        pressure
         
+        % nitrous density table (C->Kg/m^3)
+        density
+        
+        % initial mass of nitrous oxide [kg]
+        initOxiMass
     end
     
     methods
