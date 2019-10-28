@@ -9,11 +9,11 @@ elem.At = 1e-3;                         % area of nozzle throat         [m^2]
 elem.Ae = 0.0058;                       % area of nozzle outlet         [m^2]
 elem.Dfg_inner = 0.04;                  % initial inner diameter of fuel grain      [m]
 elem.Dfg_outer = 0.134;                 % outer diameter of fuel grain              [m]
-elem.Dfg_Lfg = 0.3;                     % length of fuel grain                      [m]
+elem.Lfg = 0.3;                         % length of fuel grain                      [m]
 
 sim = Simulation(elem);
 
-sim.endTime = 15;
+sim.endTime = 12;
 sim.timeProfile = 0:sim.simElement.timeStep:sim.endTime;
 
 % setting up inputs (do not change as these are the control conditions)
@@ -24,8 +24,8 @@ sim.simInput.temp_atm = 25.*ones(size(sim.timeProfile));
 sim.simInput.pressure_atm = 101.3.*ones(size(sim.timeProfile));
 sim.simInput.density_atm = 1.225.*ones(size(sim.timeProfile));
 
-bdclose all;
-sim.configureModel();
-sim.openModel();
+%bdclose all;
+%sim.configureModel();
+%sim.openModel();
 
-%sim.run();
+sim.run();
