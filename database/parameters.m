@@ -177,7 +177,7 @@ if (seek == "HREV1")
     retParams.m_dry = 2.835;                                                            % empty mass of motor                               [Kg]
 
     % injector parameters
-    retParams.A_ih = 0.00001239037518;                                                  % aera of injector holes                            [m^2]
+    retParams.A_ih = 2.4476e-6;                                                         % aera of injector holes                            [m^2]
     retParams.nIHoles = 16;                                                             % number of injector holes                          [dimless]
     retParams.injector_Cd = 0.45;                                                       % coefficient of discharge of injector              [dimless]
     

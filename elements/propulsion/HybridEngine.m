@@ -15,7 +15,7 @@ classdef HybridEngine < RocketEngine
         n                                                                   % emperical value : n                               [dimless]
 
         % nozzle parameters
-        %Ae                                                                  % exit area of nozzle                               [m^2]
+        %Ae                                                                 % exit area of nozzle                               [m^2]
         At                                                                  % throat area of nozzle                             [m^2]
         Ai                                                                  % inlet area of nozzle                              [m^2]
 
