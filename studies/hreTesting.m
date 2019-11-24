@@ -24,8 +24,8 @@ sim.simInput.temp_atm = 25.*ones(size(sim.timeProfile));
 sim.simInput.pressure_atm = 101.3.*ones(size(sim.timeProfile));
 sim.simInput.density_atm = 1.225.*ones(size(sim.timeProfile));
 
-%bdclose all;
-%sim.configureModel();
-%sim.openModel();
+bdclose all;
+sim.configureModel();
+sim.openModel();
 
-sim.run();
+%sim.run();

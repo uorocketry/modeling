@@ -33,6 +33,10 @@ classdef HybridEngine < RocketEngine
         Lfg                                                                 % length of fuel grain                              [m]
         rho_fuel                                                            % density of fuel                                   [Kg/m^3]
         initMassFuel                                                        % initial mass of fuel 
+    
+        % Other Geometry
+        Lpostcc                                                             % Length of Post Combustion Chamber                 [m]
+        Lprecc                                                              % Length of Pre Combustion Chamber                  [m]
     end
     
     methods

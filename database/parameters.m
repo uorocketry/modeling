@@ -203,6 +203,10 @@ if (seek == "HREV1")
     retParams.Dfg_outer = 0.134;                                                        % outer diamter of fuel grain                       [m]
     retParams.Lfg = 0.3;                                                                % length of fuel grain                              [m]
     retParams.rho_fuel = 930;                                                           % density of paraffin                               [Kg/m^3]
+    
+    %Other Geometry
+    retParams.Lpostcc = 0.1;                                                            % Length of Post Combustion Chamber                 [m]
+    retParams.Lprecc = 0.1;                                                             % Length of Pre Combustion Chamber                  [m]
 end
 
 %% Parameters for Recovery Elements
