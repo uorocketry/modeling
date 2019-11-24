@@ -177,8 +177,8 @@ if (seek == "HREV1")
     retParams.m_dry = 2.835;                                                            % empty mass of motor                               [Kg]
 
     % injector parameters
-    retParams.A_ih = 2.4476e-6;                                                         % aera of injector holes                            [m^2]
-    retParams.nIHoles = 16;                                                             % number of injector holes                          [dimless]
+    retParams.A_ih = 0.00003918180663;                                                         % area of injector holes                            [m^2]
+    retParams.nIHoles = 19;                                                             % number of injector holes                          [dimless]
     retParams.injector_Cd = 0.45;                                                       % coefficient of discharge of injector              [dimless]
     
     % paraffin regression model parameters
@@ -285,10 +285,14 @@ if (seek == "nitrousTank1")
     retParams.pressure = [87.73 92.29 101.325 124.2 164.2 213.6 273.6 345.7 431.5 532.3 649.9 785.8 941.7 1119 1321 1547 1801 2083 2397 2744 3127 3547 4007 4510 5060 5660 6315 7033 7251];
    
     % nitrous density table (C->Kg/m^3)
-    retParams.density = [1222.8 1220.6 1216.3 1206.7 1192.7 1178.3 1163.7 1148.8 1133.6 1118.0 1118.0 1085.6 1068.8 1051.4 1033.4 1014.8 995.4 975.2 953.9 931.4 907.4 881.6 853.5 822.2 786.6 743.9 688.0 589.4 452];
+    retParams.liqDensity = [1222.8 1220.6 1216.3 1206.7 1192.7 1178.3 1163.7 1148.8 1133.6 1118.0 1118.0 1085.6 1068.8 1051.4 1033.4 1014.8 995.4 975.2 953.9 931.4 907.4 881.6 853.5 822.2 786.6 743.9 688.0 589.4 452];
+    retParams.VapDensity = [2.613 2.738 2.987 3.609 4.680 5.982 7.546 9.406 11.60 14.16 17.14 20.58 24.53 29.05 34.22 40.11 46.82 54.47 63.21 73.26 84.86 98.41 114.5 133.9 158.1 190.0 236.7 330.4 452];
     
     % initial mass of nitrous oxide [kg]
-    retParams.initOxiMass = 14; 
+    retParams.initOxiMass = 14;
+    retParams.L_OxiTank = 1; % Length oxi tank
+    retParams.D_OxiTank = 0.134; % Diameter oxi tank
+    retParams.lengthVP = .05; % Length of the fill tube
 end
 
 end

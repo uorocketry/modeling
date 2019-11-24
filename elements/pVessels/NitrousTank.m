@@ -12,6 +12,10 @@ classdef NitrousTank < PVessel
         
         % initial mass of nitrous oxide [kg]
         initOxiMass
+        initVapMass
+        initLiqMass
+        liqDensity
+        vapDensity
     end
     
     methods
@@ -21,6 +25,13 @@ classdef NitrousTank < PVessel
         
         function initialize(obj)
             obj.assignParameters();
+            
+            volumeTank = pi * pow((D_OxiTank/2),2) * L_OxiTank;
+            bob = (1.0 / 743.9) - (1.0 / 190.0); % Need to create density interpolation (values are from nox density tables)
+            
+            obj.initLiqMass = (volumeTank - (obj.initOxiMass / 743.9)) / bob;
+            obj.initVapMass = obj.initOxiMass - obj.initLiqMass;
+            
             obj.initialized = true;
         end
     end
