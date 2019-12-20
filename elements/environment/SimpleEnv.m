@@ -25,6 +25,8 @@ classdef SimpleEnv < Element
         
         % Earth params
         RADIUS_EARTH = 6371*10^3                    % radius of Earth                                         [m]
+        MAJOR_RADIUS_EARTH = 6378137.0              % WGS-84 ellipsoid, semi-minor axis
+        MINOR_RADIUS_EARTH = 6356752.3              % WGS-84 ellipsoid, semi-major axis
         MASS_EARTH = 5.972*10^24                    % mass of Earth                                           [kg]
         ANGULARVELOCITY_EARTH = 7.2921159*10^(-5)   % angular velocity of Earth                               [rad/s]
         
