@@ -6,17 +6,19 @@ classdef NitrousTank < PVessel
         % nitrous saturation pressures (C->kPa)
         temperatureBreakpoints
         pressure
-        
-        % nitrous density table (C->Kg/m^3)
-        density
-        
+                
         % initial mass of nitrous oxide [kg]
         initOxiMass
         initVapMass
         initLiqMass
+        
         liqDensity
         vapDensity
-        volumeTank
+        delHVap
+        specHeatCap
+        
+        % length of vent pipe [m]
+        lengthVP
     end
     
     methods
@@ -27,7 +29,7 @@ classdef NitrousTank < PVessel
         function initialize(obj)
             obj.assignParameters();
             
-            obj.volumeTank = pi * pow((D_OxiTank/2),2) * L_OxiTank;
+            obj.volumeTank = pi * ((obj.D_OxiTank/2)^2) * obj.L_OxiTank;
             bob = (1.0 / 743.9) - (1.0 / 190.0); % Need to create density interpolation (values are from nox density tables)
             
             obj.initLiqMass = (obj.volumeTank - (obj.initOxiMass / 743.9)) / bob;
