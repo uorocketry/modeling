@@ -7,16 +7,18 @@ classdef SimpleEnv < Element
         Z_roughness                                 % roughness length of terrain
         atmospheric_coeff                           % emperial coefficient for wind speed calculation
         
-        % measured wind parameters
-        referenceWindAltitude                       % the altitude where reference speed was 'measured'                                     [m]
-        referenceWindSpeed                          % the 'measured' wind speed as a reference                                              [m/s] 
-        referenceWindAngle                          % the angle of wind (ie. encoded wind direction)                                        [rad]
-        
-        % parameters for wind variation
-        referenceWindSpeedVarience                  % normal distribution varience from the reference wind speed for random wind generation     []
-        referenceWindAngleVarience                  % normal distribution varience from the reference wind angle for random wind directions     []
-        randomSeed                                  % numerical seed required to generate a uniue random value. change for each simulation run  []
-        
+        % measured atmospheric parameters
+        referenceWindAltitude;                      % the altitude where reference speed was 'measured'              [m]
+        referenceWindSpeed;                         % the 'measured' wind speed as a reference                       [m/s]
+        referenceWindAngle;                         % the angle of wind from 'x-axis (ie. encoded wind direction)    [rad]
+        temperatureOffset;                          % difference in temperature from the standard atmosphere         [K]
+
+        % parameters for atmosphere condition variation
+        referenceWindSpeedVarience;                 % normal distribution varience from the reference wind speed for random wind selection      []
+        referenceWindAngleVarience;                 % normal distribution varience from the reference wind angle for random wind directions     []
+        temperatureOffsetVarience;                  % normal distribution varience from the temperature offset for random temperature selection []
+        randomSeed;                                 % numerical seed required to generate a uniue random value. change for each simulation run  []
+
         % launch location
         launchLatitude                              % latitude of the launch site                             [rad]
         launchLongditude                            % longditude of the launch site                           [rad]
