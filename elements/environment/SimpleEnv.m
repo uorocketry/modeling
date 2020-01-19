@@ -14,11 +14,10 @@ classdef SimpleEnv < Element
         temperatureOffset;                          % difference in temperature from the standard atmosphere         [K]
 
         % parameters for atmosphere condition variation
-        referenceWindSpeedVarience;                 % normal distribution varience from the reference wind speed for random wind selection      []
-        referenceWindAngleVarience;                 % normal distribution varience from the reference wind angle for random wind directions     []
-        temperatureOffsetVarience;                  % normal distribution varience from the temperature offset for random temperature selection []
-        randomSeed;                                 % numerical seed required to generate a uniue random value. change for each simulation run  []
-
+        windSpeedVarience;                 % normal distribution varience from the reference wind speed for random wind selection      []
+        windAngleVarience;                 % normal distribution varience from the reference wind angle for random wind directions     []
+        temperatureVarience;                  % normal distribution varience from the temperature offset for random temperature selection []
+        
         % launch location
         launchLatitude                              % latitude of the launch site                             [rad]
         launchLongditude                            % longditude of the launch site                           [rad]
@@ -34,7 +33,7 @@ classdef SimpleEnv < Element
         altiBreakpoints                             % altitude (ASL) breakpoints                              [m]
         temperatureAir                              % air temperature                                         [C]
         pressureAir                                 % air pressure                                            [Pa]
-        densityAiR                                  % air density                                             [kg/m^3]
+        densityAir                                  % air density                                             [kg/m^3]
         speedOfSound                                % speed of sound through atmosphere                       [m/s]
         dynamicViscosityAir                         % dynamic viscosity table data                            [N s/m^2]
         

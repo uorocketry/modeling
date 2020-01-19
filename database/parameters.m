@@ -286,15 +286,14 @@ if (seek == "Earthv2")
 
     % measured atmospheric parameters
     retParams.referenceWindAltitude = 10;               % the altitude where reference speed was 'measured'              [m]
-    retParams.referenceWindSpeed = 4;                   % the 'measured' wind speed as a reference                       [m/s]
+    retParams.referenceWindSpeed = 0;                   % the 'measured' wind speed as a reference                       [m/s]
     retParams.referenceWindAngle = 0;                   % the angle of wind from 'x-axis (ie. encoded wind direction)    [rad]
-    retParams.temperatureOffset = 6;                    % difference in temperature from the standard atmosphere         [K]
+    retParams.temperatureOffset = 0;                    % difference in temperature from the standard atmosphere         [K]
     
     % parameters for atmosphere condition variation
-    retParams.referenceWindSpeedVarience = 0.2;         % normal distribution varience from the reference wind speed for random wind selection      []
-    retParams.referenceWindAngleVarience = 0.2;         % normal distribution varience from the reference wind angle for random wind directions     []
-    retParams.temperatureOffsetVarience = 0.2;          % normal distribution varience from the temperature offset for random temperature selection []
-    retParams.randomSeed = 0;                           % numerical seed required to generate a uniue random value. change for each simulation run  []
+    retParams.windSpeedVarience = 0;                    % normal distribution varience from the reference wind speed for random wind selection      []
+    retParams.windAngleVarience = 0;                    % normal distribution varience from the reference wind angle for random wind directions     []
+    retParams.temperatureVarience = 0;                  % normal distribution varience from the temperature offset for random temperature selection []
     
     % launch location
     retParams.launchLatitude = 2.69;                    % latitude of the launch site                                    [rad]
