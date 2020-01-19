@@ -14,9 +14,10 @@ classdef SimpleEnv < Element
         temperatureOffset;                          % difference in temperature from the standard atmosphere         [K]
 
         % parameters for atmosphere condition variation
-        windSpeedVarience;                 % normal distribution varience from the reference wind speed for random wind selection      []
-        windAngleVarience;                 % normal distribution varience from the reference wind angle for random wind directions     []
-        temperatureVarience;                  % normal distribution varience from the temperature offset for random temperature selection []
+        windSpeedVarience;                          % normal distribution varience from the reference wind speed for random wind selection      []
+        windAngleVarience;                          % normal distribution varience from the reference wind angle for random wind directions     []
+        temperatureVarience;                        % normal distribution varience from the temperature offset for random temperature selection []
+        randomSeed;                                 % numerical random seed used to generate random noise                                       []
         
         % launch location
         launchLatitude                              % latitude of the launch site                             [rad]

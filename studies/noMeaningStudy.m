@@ -39,7 +39,6 @@ altProfileTime = [0 sim.endTime];
 sim.simInput = struct();
 sim.simInput.altitude_E = interp1(altProfileTime, altitudeProfile, sim.timeProfile);
 
-
 sim.simElement.referenceWindAngle = 0.69;
 sim.simElement.referenceWindSpeed = 4;
 sim.simElement.temperatureOffset = 6;
@@ -47,6 +46,8 @@ sim.simElement.temperatureOffset = 6;
 sim.simElement.windSpeedVarience = 0.2;
 sim.simElement.windAngleVarience = 0.05;
 sim.simElement.temperatureVarience = 2;
+
+sim.simElement.randomSeed = 0;
 
 bdclose all;
 sim.configureModel();
