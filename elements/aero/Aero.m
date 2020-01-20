@@ -3,6 +3,7 @@ classdef Aero < Element
     %   Detailed explanation goes here
     
     properties
+        A_ref=1;
     end
     
     methods
@@ -13,4 +14,5 @@ classdef Aero < Element
         end
     end
 end
+
 
