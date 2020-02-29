@@ -16,7 +16,7 @@ if (seek == "Jackalope")
 end
 
 %% Parameters for Aero Elements
-if (seek == "Aerov1")
+if (seek == "Ascentv1")
             
     %Inertia Matrix
     retParams.InertiaMatNoEngine = [0.04797668981    0.007561700154   -0.0000102875134;
@@ -79,7 +79,7 @@ if (seek == "Aerov1")
 end 
 
 %% Parameters for Aero Elements Version 2
-if (seek == "Aerov2")
+if (seek == "Ascentv2")
             
     %Inertia Matrix
     retParams.InertiaMatNoEngine = [0.04797668981    0.007561700154   -0.0000102875134;

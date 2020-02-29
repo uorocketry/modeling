@@ -1,4 +1,4 @@
-classdef SingleBodyAero < Aero
+classdef SingleBodyAscent < Ascent
     %SINGLEBODYAERO Summary of this class goes here
     %   Detailed explanation goes here
     
@@ -82,8 +82,8 @@ classdef SingleBodyAero < Aero
     end
     
     methods
-        function obj = SingleBodyAero(blockchoice)
-            obj@Aero(blockchoice);
+        function obj = SingleBodyAscent(blockchoice)
+            obj@Ascent(blockchoice);
         end
         
         function initialize(obj)  
