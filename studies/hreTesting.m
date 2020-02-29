@@ -4,11 +4,11 @@ elem.initialize();
 % Primary Design Parameters for Hybrid Engine
 elem.oxiTank.initOxiMass = 14;          % mass of loaded nitrous        [kg]
 elem.A_ih = pi*(((1.62e-3)/2)^2);       % area of single injector hole  [m^2]
-elem.nIHoles = 19;                      % number of holes in injector   [dimless]
+elem.nIHoles = 21;                      % number of holes in injector   [dimless]
 elem.At = 0.001;                        % area of nozzle throat         [m^2]
 elem.Ae = 0.0030;                       % area of nozzle outlet         [m^2]
 elem.Dfg_inner = 0.04;                  % initial inner diameter of fuel grain      [m]
-elem.Dfg_outer = 0.150;                 % outer diameter of fuel grain              [m]
+elem.Dfg_outer = 0.142875;              % outer diameter of fuel grain              [m]
 elem.Lfg = 0.5;                         % length of fuel grain                      [m]
 
 sim = Simulation(elem);
