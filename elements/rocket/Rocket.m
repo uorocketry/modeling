@@ -3,7 +3,7 @@ classdef Rocket < Element
     %   Detailed explanation goes here
     
     properties
-        aero
+        ascent
         propulsion
         recovery
         sequencer
@@ -19,9 +19,9 @@ classdef Rocket < Element
             obj.libraryLoc = 'elementsLibrary/rocket';
         end
         
-        function set.aero(obj,val)
-            assert(isa(val,'Aero'),'aero needs to be of type Aero, currently is a %s.',class(val));
-            obj.aero = val;
+        function set.ascent(obj,val)
+            assert(isa(val,'Ascent'),'aero needs to be of type Aero, currently is a %s.',class(val));
+            obj.ascent = val;
         end
         
         function set.propulsion(obj,val)
