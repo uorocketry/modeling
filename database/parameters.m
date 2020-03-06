@@ -141,6 +141,11 @@ if (seek == "Ascentv2")
     retParams.lauchTowerOrientation = towerParams.lauchTowerOrientation;
 end 
 
+%% Parameters for Aerodynamic Elements
+if (seek == "barrowmanExt")
+
+end
+
 %% Parameters for Propulsion Elements
 if (seek == "SolidMotor")
     
