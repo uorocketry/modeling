@@ -1,4 +1,4 @@
-elem = AeroBarrowman('barrrowmanExt');
+elem = SingleBodyAero('barrowmanExt');
 elem.initialize();
 
 sim = Simulation(elem);

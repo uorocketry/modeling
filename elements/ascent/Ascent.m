@@ -3,7 +3,7 @@ classdef Ascent < Element
     %   Detailed explanation goes here
     
     properties
-        A_ref=1;
+        aerodynamics
     end
     
     methods
@@ -12,6 +12,12 @@ classdef Ascent < Element
             obj = obj@Element(name, blockchoice);
             obj.libraryLoc = 'elementsLibrary/ascent';
         end
+        
+        function set.aerodynamics(obj,val)
+            assert(isa(val,'Aerodynamics'),'aerodynamics needs to be of type Aerodynamics, currently is a %s.',class(val));
+            obj.aerodynamics = val;
+        end
+
     end
 end
 

@@ -15,7 +15,7 @@ if (seek == "Jackalope")
         retParams.emptyCG = 1.7244487;                  % Center of gravity of rocket without fuelgrain                 [m]
 end
 
-%% Parameters for Aero Elements
+%% Parameters for Ascent Elements
 if (seek == "Ascentv1")
             
     %Inertia Matrix
@@ -24,52 +24,6 @@ if (seek == "Ascentv1")
                                     -0.0000102875134 -0.0000278034416 8.140965668];             
                                                         % inertia matrix of rocket (flight config)                      [Kg*m^2]
 
-    %body diameters
-    retParams.dn = 0.14;                                % diameter at nosecone base                                     [m]
-    retParams.db = 0.14;                                % average diameter of body                                      [m]
-    retParams.df = 0.14;                                % diameter of body at leading point of fin                      [m]
-    retParams.du = 0.14;                                % diameter at body at starting of tail cone                     [m]
-    retParams.dd = 0.14;                                % diameter of bottom on tail cone                               [m]
-
-    %body lengths
-    retParams.ln = 0.548;                               % length of nosecone                                            [m]
-    retParams.lb = 2.255;                               % length of body                                                [m]
-    retParams.lc = 0.0;                                 % length of tailcone                                            [m]
-    retParams.l_TR = 2.803;                             % total vertical length of rocket                               [m]
-
-    %fin geometry
-    retParams.lr = 0.25;                                % fin root length                                               [m]
-    retParams.lt = 0.13;                                % fin tip length                                                [m]
-    retParams.ls = 0.138;                               % fin horizontal length                                         [m]
-    retParams.tf = 0.003;                               % fin thickness                                                 [m]
-    retParams.nf = 3;                                   % number of fins                                                [dimless]
-    
-    % given areas
-    % TODO: Actually calculate or work this out
-    retParams.A_nSide = 0.03836;                        % projected area of nosecone (sideview)                         [m^2]
-    
-    % Inportant Locations
-    retParams.Xf = 2.553;                               %Fin location from nosetip                                      [m]
-    retParams.Xc = 2.803;                               %Tail cone location from nosetip                                [m]
-    
-    % other coeffs
-    retParams.K = 1.1;                                                                  % experimental coeff for correction of stability derivative         []
-   
-    % airbrake model table data
-    retParams.cmdAngleBreakpoints = [0 0.4 0.6 0.8 1.0];                                % breakpoints that specify the input cmd airbrake angle             []
-    retParams.speedBreakpoints =    [100 150 200 250];                                  % breakpoints that specify the input speed (kinematic, earth)       [m/s] 
-    retParams.increaseInAxialDrag = [0      0      0      0;...
-                                     12.37  28.62  51.65  82.76;...
-                                     20.651 47.02  85.97  137.39;...
-                                     28.37  64.886 118.55 190.08;...
-                                     32.60  74.79  136.88 219.90];                      % delta drag for breakpoint values in table for airbrake model  [N]
-    
-    % Table Data and breakpoints
-    retParams.etaTable = [0.6 0.63 0.66 0.68 0.71 0.73 0.74 0.75 0.76];                 % table for correction factor used in AOA correction            []
-    retParams.etaAOABreakpoints = [4 6 8 10 12 14 16 18 20];                            % AOA breakpoints for eta correction factor                     [degree]
-
-    retParams.delTable = [0.783 0.8625 0.925 0.9417 0.96 0.9725 0.975 0.977 0.978];     % table for correction factor used in AOA correction            []
-    retParams.delAOABreakpoints = [4 6 8 10 12 14 16 18 20];                            % AOA breakpoints for del correction factor                     [degree]
     
     % Data to pass along into initialization method of SingleBodyAero
     % ie. tower length and orientation
@@ -78,7 +32,6 @@ if (seek == "Ascentv1")
     retParams.lauchTowerOrientation = towerParams.lauchTowerOrientation;
 end 
 
-%% Parameters for Aero Elements Version 2
 if (seek == "Ascentv2")
             
     %Inertia Matrix
@@ -86,53 +39,6 @@ if (seek == "Ascentv2")
                                     0.007561700154   8.141342134      -0.0000278034416;
                                     -0.0000102875134 -0.0000278034416 8.140965668];             
                                                         % inertia matrix of rocket (flight config)                      [Kg*m^2]
-
-    %body diameters
-    retParams.dn = 0.14;                                % diameter at nosecone base                                     [m]
-    retParams.db = 0.14;                                % average diameter of body                                      [m]
-    retParams.df = 0.14;                                % diameter of body at leading point of fin                      [m]
-    retParams.du = 0.14;                                % diameter at body at starting of tail cone                     [m]
-    retParams.dd = 0.14;                                % diameter of bottom on tail cone                               [m]
-
-    %body lengths
-    retParams.ln = 0.548;                               % length of nosecone                                            [m]
-    retParams.lb = 2.255;                               % length of body                                                [m]
-    retParams.lc = 0.0;                                 % length of tailcone                                            [m]
-    retParams.l_TR = 2.803;                             % total vertical length of rocket                               [m]
-
-    %fin geometry
-    retParams.lr = 0.25;                                % fin root length                                               [m]
-    retParams.lt = 0.13;                                % fin tip length                                                [m]
-    retParams.ls = 0.138;                               % fin horizontal length                                         [m]
-    retParams.tf = 0.003;                               % fin thickness                                                 [m]
-    retParams.nf = 3;                                   % number of fins                                                [dimless]
-    
-    % given areas
-    % TODO: Actually calculate or work this out
-    retParams.A_nSide = 0.03836;                        % projected area of nosecone (sideview)                         [m^2]
-    
-    % Inportant Locations
-    retParams.Xf = 2.553;                               %Fin location from nosetip                                      [m]
-    retParams.Xc = 2.803;                               %Tail cone location from nosetip                                [m]
-    
-    % other coeffs
-    retParams.K = 1.1;                                                                  % experimental coeff for correction of stability derivative         []
-   
-    % airbrake model table data
-    retParams.cmdAngleBreakpoints = [0 0.4 0.6 0.8 1.0];                                % breakpoints that specify the input cmd airbrake angle             []
-    retParams.speedBreakpoints =    [100 150 200 250];                                  % breakpoints that specify the input speed (kinematic, earth)       [m/s] 
-    retParams.increaseInAxialDrag = [0      0      0      0;...
-                                     12.37  28.62  51.65  82.76;...
-                                     20.651 47.02  85.97  137.39;...
-                                     28.37  64.886 118.55 190.08;...
-                                     32.60  74.79  136.88 219.90];                      % delta drag for breakpoint values in table for airbrake model  [N]
-    
-    % Table Data and breakpoints
-    retParams.etaTable = [0.6 0.63 0.66 0.68 0.71 0.73 0.74 0.75 0.76];                 % table for correction factor used in AOA correction            []
-    retParams.etaAOABreakpoints = [4 6 8 10 12 14 16 18 20];                            % AOA breakpoints for eta correction factor                     [degree]
-
-    retParams.delTable = [0.783 0.8625 0.925 0.9417 0.96 0.9725 0.975 0.977 0.978];     % table for correction factor used in AOA correction            []
-    retParams.delAOABreakpoints = [4 6 8 10 12 14 16 18 20];                            % AOA breakpoints for del correction factor                     [degree]
     
     % Data to pass along into initialization method of SingleBodyAero
     % ie. tower length and orientation
@@ -143,6 +49,53 @@ end
 
 %% Parameters for Aerodynamic Elements
 if (seek == "barrowmanExt")
+    
+    %body diameters
+    retParams.dn = 0.14;                                % diameter at nosecone base                                     [m]
+    retParams.db = 0.14;                                % average diameter of body                                      [m]
+    retParams.df = 0.14;                                % diameter of body at leading point of fin                      [m]
+    retParams.du = 0.14;                                % diameter at body at starting of tail cone                     [m]
+    retParams.dd = 0.14;                                % diameter of bottom on tail cone                               [m]
+
+    %body lengths
+    retParams.ln = 0.548;                               % length of nosecone                                            [m]
+    retParams.lb = 2.255;                               % length of body                                                [m]
+    retParams.lc = 0.0;                                 % length of tailcone                                            [m]
+    retParams.l_TR = 2.803;                             % total vertical length of rocket                               [m]
+
+    %fin geometry
+    retParams.lr = 0.25;                                % fin root length                                               [m]
+    retParams.lt = 0.13;                                % fin tip length                                                [m]
+    retParams.ls = 0.138;                               % fin horizontal length                                         [m]
+    retParams.tf = 0.003;                               % fin thickness                                                 [m]
+    retParams.nf = 3;                                   % number of fins                                                [dimless]
+    
+    % given areas
+    % TODO: Actually calculate or work this out
+    retParams.A_nSide = 0.03836;                        % projected area of nosecone (sideview)                         [m^2]
+    
+    % Inportant Locations
+    retParams.Xf = 2.553;                               %Fin location from nosetip                                      [m]
+    retParams.Xc = 2.803;                               %Tail cone location from nosetip                                [m]
+    
+    % other coeffs
+    retParams.K = 1.1;                                                                  % experimental coeff for correction of stability derivative         []
+   
+    % airbrake model table data
+    retParams.cmdAngleBreakpoints = [0 0.4 0.6 0.8 1.0];                                % breakpoints that specify the input cmd airbrake angle             []
+    retParams.speedBreakpoints =    [100 150 200 250];                                  % breakpoints that specify the input speed (kinematic, earth)       [m/s] 
+    retParams.increaseInAxialDrag = [0      0      0      0;...
+                                     12.37  28.62  51.65  82.76;...
+                                     20.651 47.02  85.97  137.39;...
+                                     28.37  64.886 118.55 190.08;...
+                                     32.60  74.79  136.88 219.90];                      % delta drag for breakpoint values in table for airbrake model  [N]
+    
+    % Table Data and breakpoints
+    retParams.etaTable = [0.6 0.63 0.66 0.68 0.71 0.73 0.74 0.75 0.76];                 % table for correction factor used in AOA correction            []
+    retParams.etaAOABreakpoints = [4 6 8 10 12 14 16 18 20];                            % AOA breakpoints for eta correction factor                     [degree]
+
+    retParams.delTable = [0.783 0.8625 0.925 0.9417 0.96 0.9725 0.975 0.977 0.978];     % table for correction factor used in AOA correction            []
+    retParams.delAOABreakpoints = [4 6 8 10 12 14 16 18 20];                            % AOA breakpoints for del correction factor                     [degree]
 
 end
 
