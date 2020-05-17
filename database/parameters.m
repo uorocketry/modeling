@@ -297,8 +297,8 @@ if (seek == "nitrousTank1")
     
     % initial mass of nitrous oxide [kg]
     retParams.initOxiMass = 14;
-    retParams.L_OxiTank = 1; % Length oxi tank
-    retParams.D_OxiTank = 0.134; % Diameter oxi tank
+    retParams.L_OxiTank = 1.24; % Length oxi tank
+    retParams.D_OxiTank = 0.14; % Diameter oxi tank
     retParams.lengthVP = .05; % Length of the vent tube
 end
 
