@@ -280,26 +280,31 @@ end
 
 %% Parameters for Pressure Vessels
 if (seek == "nitrousTank1")
-    % nitrous saturation pressures (C->kPa)
+    % nitrous saturation pressures (deg C->kPa)
     retParams.temperatureBreakpoints = [-90.82 -90 -88.46 -85 -80 -75 -70 -65 -60 -55 -50 -45 -40 -35 -30 -25 -20 -15 -10 -5 0 5 10 15 20 25 30 35 36.42];
     retParams.pressure = [87.73 92.29 101.325 124.2 164.2 213.6 273.6 345.7 431.5 532.3 649.9 785.8 941.7 1119 1321 1547 1801 2083 2397 2744 3127 3547 4007 4510 5060 5660 6315 7033 7251];
    
-    % nitrous density table (C->Kg/m^3)
+    % nitrous density table (deg C->Kg/m^3)
     retParams.liqDensity = [1222.8 1220.6 1216.3 1206.7 1192.7 1178.3 1163.7 1148.8 1133.6 1118.0 1118.0 1085.6 1068.8 1051.4 1033.4 1014.8 995.4 975.2 953.9 931.4 907.4 881.6 853.5 822.2 786.6 743.9 688.0 589.4 452];
     retParams.vapDensity = [2.613 2.738 2.987 3.609 4.680 5.982 7.546 9.406 11.60 14.16 17.14 20.58 24.53 29.05 34.22 40.11 46.82 54.47 63.21 73.26 84.86 98.41 114.5 133.9 158.1 190.0 236.7 330.4 452];
     
-    % nitrous latent heat of vapourization (C->KJ/Kg)
+    % nitrous latent heat of vapourization (deg C->KJ/Kg)
     retParams.delHVap = [377 377 375 371 365 359 353 346 340 333 326 318 310 302 294 285 276 266 255 244 232 219 204 188 169 147 117 64.9 0];
     
-    % specific heat capacity of liquid nitrous (C->KJ/Kg*K)
+    % specific heat capacity of liquid nitrous (deg C->KJ/Kg*K)
     % #TODO: LAST TWO VALUES ARE SUSPICIOUS AS HECK! CHECK EM!
     retParams.specHeatCap = [1.747 1.750 1.756 1.768 1.781 1.791 1.798 1.803 1.807 1.812 1.818 1.827 1.840 1.858 1.833 1.915 1.957 2.011 2.079 2.166 2.274 2.412 2.592 2.834 3.188 3.781 5.143 10 100];
     
     % initial mass of nitrous oxide [kg]
     retParams.initOxiMass = 14;
+    
+    % geometric parameters of nitrous oxide tank
     retParams.L_OxiTank = 1.24; % Length oxi tank
     retParams.D_OxiTank = 0.14; % Diameter oxi tank
-    retParams.lengthVP = .05; % Length of the vent tube
+    retParams.lengthVP =  0.25; % Length of the vent tube
+    
+    % initial temperature of nitrous oxide [deg C]
+    retParams.initOxiTemp = 30;
 end
 
 end

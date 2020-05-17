@@ -12,6 +12,9 @@ classdef NitrousTank < PVessel
         initVapMass
         initLiqMass
         
+        % initial temperature of nitrous oxide [deg c]
+        initOxiTemp
+        
         liqDensity
         vapDensity
         delHVap
@@ -29,11 +32,24 @@ classdef NitrousTank < PVessel
         function initialize(obj)
             obj.assignParameters();
             
-            obj.volumeTank = pi * ((obj.D_OxiTank/2)^2) * obj.L_OxiTank;
-            bob = (1.0 / 743.9) - (1.0 / 190.0); % Need to create density interpolation (values are from nox density tables)
+            % ullage is the gas head space (in our case determined by
+            % the vent pipe length).
+            ullageRat = obj.lengthVP/obj.L_OxiTank;
             
-            obj.initLiqMass = (obj.volumeTank - (obj.initOxiMass / 743.9)) / bob;
-            obj.initVapMass = obj.initOxiMass - obj.initLiqMass;
+            initVapDensity = interp1(obj.temperatureBreakpoints,...
+                                     obj.vapDensity,...
+                                     obj.initOxiTemp);
+            initLiqDensity = interp1(obj.temperatureBreakpoints,...
+                                     obj.liqDensity,...
+                                     obj.initOxiTemp);
+            
+            obj.volumeTank = pi * ((obj.D_OxiTank/2)^2) * obj.L_OxiTank;
+            
+            % Assume that perfect filling happened and no liquid went past
+            % bottom of vent pipe
+            obj.initVapMass = initVapDensity*ullageRat*obj.volumeTank;
+            obj.initLiqMass = initLiqDensity*(1-ullageRat)*obj.volumeTank;
+            obj.initOxiMass = obj.initVapMass + obj.initLiqMass;
             
             obj.initialized = true;
         end
