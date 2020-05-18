@@ -22,6 +22,13 @@ classdef NitrousTank < PVessel
         
         % length of vent pipe [m]
         lengthVP
+        
+        % important constants
+        n2o_pCrit
+        n2o_rhoCrit
+        n2o_tCrit
+        n2o_ZCrit
+        n2o_gamma
     end
     
     methods

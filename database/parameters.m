@@ -305,6 +305,13 @@ if (seek == "nitrousTank1")
     
     % initial temperature of nitrous oxide [deg C]
     retParams.initOxiTemp = 30;
+    
+    % important constants
+    retParams.n2o_pCrit =   7251;   % critical pressure of n2o          [kPa]
+    retParams.n2o_rhoCrit = 452.0;  % critical density of n2o           [kg/m^3]
+    retParams.n2o_tCrit =   36.42;  % critical temperature of n2o       [deg C]
+    retParams.n2o_ZCrit =   0.28;   % critical compress. factor of n2o  [dimless]
+    retParams.n2o_gamma =   1.3;    % gamma of n2o                      [dimless]
 end
 
 end
