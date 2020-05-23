@@ -97,6 +97,37 @@ if (seek == "barrowmanExt")
     retParams.delTable = [0.783 0.8625 0.925 0.9417 0.96 0.9725 0.975 0.977 0.978];     % table for correction factor used in AOA correction            []
     retParams.delAOABreakpoints = [4 6 8 10 12 14 16 18 20];                            % AOA breakpoints for del correction factor                     [degree]
 
+    %Nose cone pressure drag tables
+    retParams.ellipsoidTable = [0.110 0.128 0.140 0.148 0.152 0.159 0.162];
+    retParams.ellipsoidBreakpoints = [1.2 1.25 1.3 1.4 1.6 2.0 2.4];
+    
+    retParams.x14Table = [0.140 0.156 0.169 0.192 0.206 0.227 0.241 0.249 0.252];
+    retParams.x14Breakpoints = [1.2 1.3 1.4 1.6 1.8 2.2 2.6 3.0 3.6];
+    
+    retParams.x12Table = [0 0.014 0.050 0.060 0.059 0.081 0.084 0.085 0.078];
+    retParams.x12Breakpoints = [0.925 0.95 1.0 1.05 1.1 1.2 1.3 1.7 2.0];
+    
+    retParams.x34Table = [0 0.014 0.050 0.060 0.059 0.081 0.084 0.085 0.078];
+    retParams.x34Breakpoints = [0.925 0.95 1.0 1.05 1.1 1.2 1.3 1.7 2.0];
+    
+    retParams.vonKarmanTable = [0 0.010 0.027 0.055 0.070 0.081 0.095 0.097 0.091 0.083];
+    retParams.vonKarmanBreakpoints = [0.9 0.95 1.0 1.05 1.1 1.2 1.4 1.6 2.0 3.0];
+    
+    retParams.lvHaakTable = [0 0.010 0.024 0.066 0.084 0.100 0.114 0.117 0.113];
+    retParams.lvHaakBreakpoints = [0.9 0.95 1.0 1.05 1.1 1.2 1.4 1.6 2.0];
+    
+    retParams.parabolicTable = [0 0.016 0.041 0.092 0.109 0.119 0.113 0.108];
+    retParams.parabolicBreakpoints = [0.95 0.975 1.0 1.05 1.1 1.2 1.4 1.7];
+    
+    retParams.parabolic12Table = [0 0.016 0.042 0.100 0.126 0.125 0.100 0.090 0.088];
+    retParams.parabolic12Breakpoints = [0.8 0.9 0.95 1.0 1.05 1.1 1.3 1.5 1.8];
+    
+    retParams.parabolic34Table = [0 0.023 0.073 0.098 0.107 0.106 0.089 0.082];
+    retParams.parabolic34Breakpoints = [0.9 0.95 1.0 1.05 1.1 1.2 1.4 1.7];
+    
+    retParams.bluntTable = [
+    retParams.bluntBreakpoints = [
+    
 end
 
 %% Parameters for Propulsion Elements

@@ -74,6 +74,12 @@ classdef SingleBodyAero < Aerodynamics
         % aero consts
         REC = 5*10^5;                   % critical Reylnolds number according to Mandell et al [1973]   [] 
 
+        %Nose Cone Drag Table
+        noseConeDragTable1              %Nose cone pressure drag for breakpoint mach nums
+        noseConeBreakpoints1            %break points that specify input mach
+        
+        noseConeDragTable2              %Nose cone pressure drag for breakpoint mach nums
+        noseConeBreakpoints2            %break points that specify input mach
     end
     
     methods
