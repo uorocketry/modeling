@@ -2,7 +2,7 @@ elem = HybridEngine('HREV1');
 elem.initialize();
 
 % Primary Design Parameters for Hybrid Engine
-elem.oxiTank.initOxiMass = 14;          % mass of loaded nitrous        [kg]
+elem.oxiTank.initOxiTemp = 30;          % Temperature of nitrous after fill        [deg c]
 elem.A_ih = 2.4476e-6;                  % area of single injector hole  [m^2]
 elem.nIHoles = 16;                      % number of holes in injector   [dimless]
 elem.At = 1e-3;                         % area of nozzle throat         [m^2]
