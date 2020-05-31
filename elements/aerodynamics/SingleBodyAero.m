@@ -75,6 +75,7 @@ classdef SingleBodyAero < Aerodynamics
         REC = 5*10^5;                   % critical Reylnolds number according to Mandell et al [1973]   [] 
 
         %Nose Cone Drag Table
+        noseConeShape
         noseConeDragTable1              %Nose cone pressure drag for breakpoint mach nums
         noseConeBreakpoints1            %break points that specify input mach
         
@@ -137,6 +138,10 @@ classdef SingleBodyAero < Aerodynamics
             
             % Calculate equivalent diameter Deq for moment damping
             obj.deq = (obj.A_nSide + (obj.l_TR-obj.ln)*2*(obj.dn/2))/(obj.l_TR);
+            
+            %Assign Lookup table for nose cone type
+
+            if(
             
             obj.initialized = true;
         end
