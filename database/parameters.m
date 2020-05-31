@@ -145,7 +145,8 @@ if (seek == "barrowmanExt")
     retParams.parabolic34Table = [0 0.023 0.073 0.098 0.107 0.106 0.089 0.082];
     retParams.parabolic34Breakpoints = [0.9 0.95 1.0 1.05 1.1 1.2 1.4 1.7];
     
-    
+    %retParams.bluntTable = [
+    %retParams.bluntBreakpoints = [    
 end
 
 %% Parameters for Propulsion Elements

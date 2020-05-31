@@ -107,6 +107,9 @@ classdef SingleBodyAero < Aerodynamics
             % Calculate the wetted area of one fin
             obj.A_fwt = ((obj.lr + obj.lt)/2)*obj.ls;
             
+%             % Calculate body wetted area
+%             obj.A_bwt = ;
+            
             % total horizontal length
             obj.l_TS = 2*(obj.ls + (obj.df/2))*sin(pi/obj.nf);
             
