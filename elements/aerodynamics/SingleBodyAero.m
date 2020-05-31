@@ -58,7 +58,10 @@ classdef SingleBodyAero < Aerodynamics
         k_fb                            % fin-body infereference coeff                                  [] 
         k_bf                            % body-fin intereference coeff                                  []
         K                               % experimental coeff for correction of stability derivative     []
-
+        
+        noseConeShape                   % nosecone shape selection FIXME                                [dimless]
+        noseConeParameter               % nosecone parameter                                            [dimless]
+        
         % lookup tables for correction factors
         etaTable                        % table for correction factor used in AOA correction            []
         etaAOABreakpoints               % AOA breakpoints for eta correction factor                     []
@@ -75,7 +78,6 @@ classdef SingleBodyAero < Aerodynamics
         REC = 5*10^5;                   % critical Reylnolds number according to Mandell et al [1973]   [] 
 
         %Nose Cone Drag Table
-        noseConeShape
         noseConeDragTable1              %Nose cone pressure drag for breakpoint mach nums
         noseConeBreakpoints1            %break points that specify input mach
         
@@ -90,6 +92,38 @@ classdef SingleBodyAero < Aerodynamics
         
         function initialize(obj)
             obj.assignParameters();
+            
+            %Do Nosecone Calculations
+            switch obj.noseConeShape
+                case 1
+                %1=conical
+                %Param = 0
+                    obj.noseConeParameter = 0;
+                case 2
+                %2=ogive
+                %Param btwn 0 and 1; default = 1
+                    obj.noseConeParameter = 1;
+                case 3
+                %3=ellipsoid
+                %Not dependant on param
+                    obj.noseConeParameter = 0;
+                case 4
+                %4=power
+                %Param btwn 0 and 1; default = 0.5
+                    obj.noseConeParameter = 0.5;
+                case 5 
+                %5=parabolic
+                %Param btwn 0 and 1; default = 1
+                    obj.noseConeParameter = 1;
+                case 6
+                %6=von karman
+                %Param btwn 0 and 0.333; 0 for von karman
+                    obj.noseConeParameter = 0;
+                case 7
+                %6=LV-Haack
+                %Param btwn 0 and 0.333; 0.333 for LV-Haack
+                    obj.noseConeParameter = 0.333;
+            end
             
             % Calculate reference area (base of nosecone)
             obj.Ar = pi*(obj.dn/2)^2;

@@ -82,24 +82,7 @@ if (seek == "barrowmanExt")
     retParams.K = 1.1;                                                                  % experimental coeff for correction of stability derivative         []
    
     %Nosecone Shape and Parameter
-    
-    %Choose one of the following:
-    
-    %1=conical
-        %Param = 0
-    %2=ogive
-        %Param btwn 0 and 1; default = 1
-    %3=ellipsoid
-        %Not dependant on param
-    %4=power
-        %Param btwn 0 and 1; default = 0.5
-    %5=parabolic
-        %Param btwn 0 and 1; default = 1
-    %6=haack
-        %Param btwn 0 and 0.333; 0 for von karman, 0.333 for LV-Haack
-        
     retParams.noseConeShape = 4;
-    retParams.noseConeParameter = 0.5;
     
     % airbrake model table data
     retParams.cmdAngleBreakpoints = [0 0.4 0.6 0.8 1.0];                                % breakpoints that specify the input cmd airbrake angle             []
