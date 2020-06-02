@@ -293,7 +293,7 @@ if (seek == "nitrousTank1")
     
     % specific heat capacity of liquid nitrous (deg C->KJ/Kg*K)
     % #TODO: LAST TWO VALUES ARE SUSPICIOUS AS HECK! CHECK EM!
-    retParams.specHeatCap = [1.747 1.750 1.756 1.768 1.781 1.791 1.798 1.803 1.807 1.812 1.818 1.827 1.840 1.858 1.833 1.915 1.957 2.011 2.079 2.166 2.274 2.412 2.592 2.834 3.188 3.781 5.143 10 100];
+    retParams.specHeatCap = [1.747 1.750 1.756 1.768 1.781 1.791 1.798 1.803 1.807 1.812 1.818 1.827 1.840 1.858 1.833 1.915 1.957 2.011 2.079 2.166 2.274 2.412 2.592 2.834 3.188 3.781 5.143 100 1000];
     
     % geometric parameters of nitrous oxide tank
     retParams.L_OxiTank = 1.24; % Length oxi tank
