@@ -3,7 +3,9 @@ classdef PVessel < Element
     %   Detailed explanation goes here
     
     properties
-        
+        L_OxiTank
+        D_OxiTank
+        volumeTank
     end
     
     methods
