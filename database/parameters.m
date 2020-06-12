@@ -73,6 +73,7 @@ if (seek == "barrowmanExt")
     % given areas
     % TODO: Actually calculate or work this out
     retParams.A_nSide = 0.03836;                        % projected area of nosecone (sideview)                         [m^2]
+    retParams.A_ll = 0.00015;                           % Area of launch lug                                            [m^2]
     
     % Inportant Locations
     retParams.Xf = 2.553;                               %Fin location from nosetip                                      [m]
@@ -101,6 +102,8 @@ if (seek == "barrowmanExt")
     retParams.delAOABreakpoints = [4 6 8 10 12 14 16 18 20];                            % AOA breakpoints for del correction factor                     [degree]
 
     %Nose cone pressure drag tables
+    %TO DO: Add option to choose nosecone shape. Currently only have von
+    %Karman setup
     retParams.ellipsoidTable = [0.110 0.128 0.140 0.148 0.152 0.159 0.162];
     retParams.ellipsoidBreakpoints = [1.2 1.25 1.3 1.4 1.6 2.0 2.4];
     
