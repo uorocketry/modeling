@@ -74,6 +74,7 @@ if (seek == "barrowmanExt")
     % TODO: Actually calculate or work this out
     retParams.A_nSide = 0.03836;                        % projected area of nosecone (sideview)                         [m^2]
     retParams.A_ll = 0.00015;                           % Area of launch lug                                            [m^2]
+    retParams.A_fwt = 0.061775;                         %Wetted area of one fin                                         [m^2]
     
     % Inportant Locations
     retParams.Xf = 2.553;                               %Fin location from nosetip                                      [m]
