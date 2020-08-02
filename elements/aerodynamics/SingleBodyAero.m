@@ -39,6 +39,8 @@ classdef SingleBodyAero < Aerodynamics
         ls                              % fin horizontal length                                         [m]
         tf                              % fin thickness                                                 [m]
         nf                              % number of fins                                                [dimless]
+        ltrt                            % top of root to top of tip                                     [m]
+        sweepAgl                        % Midchord sweep angle of the fin                               [rad]
         
         % important Locations
         Xf                              %fin location from nosetip                                      [m]
@@ -58,6 +60,7 @@ classdef SingleBodyAero < Aerodynamics
         k_fb                            % fin-body infereference coeff                                  [] 
         k_bf                            % body-fin intereference coeff                                  []
         K                               % experimental coeff for correction of stability derivative     []
+        spHt                            % air specific heat ratio
         
         noseConeShape                   % nosecone shape selection FIXME                                [dimless]
         noseConeParameter               % nosecone parameter                                            [dimless]
@@ -147,8 +150,10 @@ classdef SingleBodyAero < Aerodynamics
             obj.A_fxs = obj.tf*obj.lm;
             
             % Calculate the wetted area of one fin
-            %obj.A_fwt = ((obj.lr + obj.lt)/2)*obj.ls; 
-            %This is wrong assigned value from solidworks instead
+            obj.A_fwt = ((obj.lr + obj.lt)/2)*obj.ls; 
+            
+            %Calculate fin midchord sweep angle
+            obj.sweepAgl = atan((obj.ltrt-0.5*obj.lr+0.5*obj.lt)/obj.ls);
             
 %           % Calculate body wetted area
             %To DO: Make better

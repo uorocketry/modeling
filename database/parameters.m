@@ -69,20 +69,21 @@ if (seek == "barrowmanExt")
     retParams.ls = 0.138;                               % fin horizontal length                                         [m]
     retParams.tf = 0.003;                               % fin thickness                                                 [m]
     retParams.nf = 3;                                   % number of fins                                                [dimless]
+    retParams.ltrt = 0.11;                              % Top of root to top of tip                                     [m]
     
     % given areas
     % TODO: Actually calculate or work this out
     retParams.A_nSide = 0.03836;                        % projected area of nosecone (sideview)                         [m^2]
     retParams.A_ll = 0.00015;                           % Area of launch lug                                            [m^2]
-    retParams.A_fwt = 0.061775;                         %Wetted area of one fin                                         [m^2]
     
     % Inportant Locations
     retParams.Xf = 2.553;                               %Fin location from nosetip                                      [m]
     retParams.Xc = 2.803;                               %Tail cone location from nosetip                                [m]
     
     % other coeffs
-    retParams.K = 1.1;                                                                  % experimental coeff for correction of stability derivative         []
-   
+    retParams.K = 1.1;                                  % experimental coeff for correction of stability derivative         []
+    retParams.spHt = 1.4;                               %Specific heat ratio for air
+    
     %Nosecone Shape and Parameter
     retParams.noseConeShape = 4;
     
