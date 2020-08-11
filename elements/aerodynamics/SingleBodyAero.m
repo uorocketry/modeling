@@ -62,6 +62,7 @@ classdef SingleBodyAero < Aerodynamics
         K                               % experimental coeff for correction of stability derivative     []
         spHt                            % air specific heat ratio
         
+        
         noseConeShape                   % nosecone shape selection FIXME                                [dimless]
         noseConeParameter               % nosecone parameter                                            [dimless]
         

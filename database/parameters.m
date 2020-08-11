@@ -84,6 +84,8 @@ if (seek == "barrowmanExt")
     retParams.K = 1.1;                                  % experimental coeff for correction of stability derivative         []
     retParams.spHt = 1.4;                               %Specific heat ratio for air
     
+    
+    
     %Nosecone Shape and Parameter
     retParams.noseConeShape = 4;
     
