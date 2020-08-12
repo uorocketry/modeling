@@ -206,9 +206,12 @@ if (seek == "HREV1")
     
     %Other Geometry
     retParams.Lpostcc = 0.1;                                                            % Length of Post Combustion Chamber                 [m]
-    retParams.Lprecc = 0.1;                                                             % Length of Pre Combustion Chamber                  [m]
+    retParams.Lprecc = 0.1;                                                             % Length of Pre Combustion Chamber[m]
+    
+    
 end
 
+    
 %% Parameters for Recovery Elements
 if (seek == "SingleChute")
     
@@ -315,5 +318,6 @@ if (seek == "nitrousTank1")
     retParams.n2o_gamma =   1.3;    % gamma of n2o                      [dimless]
 end
 
+    
 end
 
