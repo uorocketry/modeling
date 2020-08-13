@@ -229,10 +229,16 @@ classdef Simulation < handle
             % resursive function depending on if the input signal is a
             % singleton, a vector or a bus
             for i=1:length(elementInportHandles)
-                portName = get_param(blockChoiceInportHandles(i), 'name');
+                
+                if(i <= length(blockChoiceInportHandles))
+                    portName = get_param(blockChoiceInportHandles(i), 'name');
+                else
+                    portName = '';
+                end
+                
                 portIndexBC = find(contains(inportNamesBC, portName), 1);
                 
-                if(~isempty(portIndexBC))
+                if(~isempty(portName) && ~isempty(portIndexBC))
                     subPath = sprintf('%s.%s', pathInputStruct, portName);
                     sigDimension = size(eval(subPath));
                     
