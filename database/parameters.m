@@ -167,7 +167,7 @@ if (seek == "SolidMotor")
 
 end
 
-if (seek == "HREV1")  
+if (seek == "HREV1" || seek == "HREHotFireData")
     % engine locations
     retParams.X_GM = 2.244;                                                             % engine location from nose tip                     [m]
     retParams.X_CG_full = 0.2745;                                                       % location of cg of engine from X_GM                [m]

@@ -23,6 +23,11 @@ sim.simInput.valveCmd = 0*sim.timeProfile;
 sim.simInput.temp_atm = 25.*ones(size(sim.timeProfile));
 sim.simInput.pressure_atm = 101.3.*ones(size(sim.timeProfile));
 sim.simInput.density_atm = 1.225.*ones(size(sim.timeProfile));
+
+%Read CSV with Sensor Data
+
+%Assign Proper data to the following inputs + interpolate to a common
+%timeProfile
 sim.simInput.mass_oxi = 1.225.*ones(size(sim.timeProfile));
 sim.simInput.density_oxi = 1.225.*ones(size(sim.timeProfile));
 sim.simInput.Tank_pressure = 1.225.*ones(size(sim.timeProfile));
