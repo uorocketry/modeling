@@ -15,6 +15,9 @@ classdef NitrousTank < PVessel
         % initial temperature of nitrous oxide [deg c]
         initOxiTemp
         
+        % initial pressure of nitrous oxide [kPa]
+        initOxiPres
+        
         liqDensity
         vapDensity
         delHVap
@@ -49,6 +52,10 @@ classdef NitrousTank < PVessel
             initLiqDensity = interp1(obj.temperatureBreakpoints,...
                                      obj.liqDensity,...
                                      obj.initOxiTemp);
+                                 
+            obj.initOxiPres = interp1(obj.temperatureBreakpoints,...
+                                      obj.pressure,...
+                                      obj.initOxiTemp);
             
             obj.volumeTank = pi * ((obj.D_OxiTank/2)^2) * obj.L_OxiTank;
             
