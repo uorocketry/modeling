@@ -34,7 +34,7 @@ end
 
 if (seek == "Ascentv2")
             
-    %Inertia Matrix
+    %Inertia Matrix No Propellant
     retParams.InertiaMatNoEngine = [0.04797668981    0.007561700154   -0.0000102875134;
                                     0.007561700154   8.141342134      -0.0000278034416;
                                     -0.0000102875134 -0.0000278034416 8.140965668];             
