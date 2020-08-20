@@ -4,7 +4,7 @@ classdef SingleBodyAscent < Ascent
     
     properties
         %Inertia Matrix
-        InertiaMatNoEngine              % inertia matrix of rocket (flight config)                      [Kg*m^2]
+        InertiaMatNoEngine              % inertia matrix of rocket (flight config) Yes engine , no propellent                     [Kg*m^2]
                 
         % initial orientation
         initQuaternions                 % initial quaternions defining the starting orientation         []        
