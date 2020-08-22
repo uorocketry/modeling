@@ -203,6 +203,9 @@ if (seek == "HREV1")
     retParams.Dfg_outer = 0.134;                                                        % outer diamter of fuel grain                       [m]
     retParams.Lfg = 0.3;                                                                % length of fuel grain                              [m]
     retParams.rho_fuel = 930;                                                           % density of paraffin                               [Kg/m^3]
+    
+    retParams.X_TanktoGrain = 2;                                                         % measurement between the tip of the tank to the tip of the grain (m)
+    
 end
 
 %% Parameters for Recovery Elements
