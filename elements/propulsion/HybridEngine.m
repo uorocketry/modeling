@@ -35,7 +35,7 @@ classdef HybridEngine < RocketEngine
         initMassFuel                                                        % initial mass of fuel 
         
         
-        X_TanktoGrain                                                       % measurement between the tip of the tank to the tip of the grain
+        X_TanktoGrain                                                       % measurement between the tip of the tank to the tip of the grain [m]
     end
     
     methods
