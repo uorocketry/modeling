@@ -1,16 +1,18 @@
-classdef Aero < Element
+classdef Ascent < Element
     %UNTITLED Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
+        A_ref=1;
     end
     
     methods
-        function obj = Aero(blockchoice)
-            name = 'aero';
+        function obj = Ascent(blockchoice)
+            name = 'ascent';
             obj = obj@Element(name, blockchoice);
-            obj.libraryLoc = 'elementsLibrary/aero';
+            obj.libraryLoc = 'elementsLibrary/ascent';
         end
     end
 end
+
 
