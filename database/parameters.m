@@ -63,6 +63,7 @@ if (seek == "barrowmanExt")
     retParams.lc = 0.0;                                 % length of tailcone                                            [m]
     retParams.l_TR = 2.803;                             % total vertical length of rocket                               [m]
 
+    
     %fin geometry
     retParams.lr = 0.25;                                % fin root length                                               [m]
     retParams.lt = 0.13;                                % fin tip length                                                [m]
@@ -70,11 +71,15 @@ if (seek == "barrowmanExt")
     retParams.tf = 0.003;                               % fin thickness                                                 [m]
     retParams.nf = 3;                                   % number of fins                                                [dimless]
     retParams.ltrt = 0.11;                              % Top of root to top of tip                                     [m]
+    retParams.macLead = 0.04921;                        % Dist btwn top of root to top of MAC                           [m]
     
     % given areas
     % TODO: Actually calculate or work this out
     retParams.A_nSide = 0.03836;                        % projected area of nosecone (sideview)                         [m^2]
     retParams.A_ll = 0.00015;                           % Area of launch lug                                            [m^2]
+    
+    %Given Volume
+    retParams.Vn = 0.004552;                           %Nosecone Volume                                                [m^3]
     
     % Inportant Locations
     retParams.Xf = 2.553;                               %Fin location from nosetip                                      [m]
@@ -84,7 +89,11 @@ if (seek == "barrowmanExt")
     retParams.K = 1.1;                                  % experimental coeff for correction of stability derivative         []
     retParams.spHt = 1.4;                               %Specific heat ratio for air
     
+    %Transonic fins Xcp Interpolator coefficients
+    retParams.finXcpPoly = [-0.0768122 0.584042 -1.7367 2.40481 -1.32418 0.493871];     %Coefficients for transonic fins Xcp polynomial                     []
     
+    %Transonic Fins Cna "Table"
+    retParams.transCnaFinsBreakpoints = [0.9 1.5];                                      % Mach Breakpoints for fins Cna in transonic region                 [m/s]
     
     %Nosecone Shape and Parameter
     retParams.noseConeShape = 4;

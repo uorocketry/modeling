@@ -31,6 +31,9 @@ classdef SingleBodyAero < Aerodynamics
         A_bwt                           % wetted area body                                              [m^2]
         A_nSide                         % projected area of nosecone (sideview)                         [m^2]
         
+        %Volumes
+        Vn                              %Nosecone Volume                                                [m^3]
+        
         %fin geometry
         lr                              % fin root length                                               [m]
         lt                              % fin tip length                                                [m]
@@ -41,6 +44,8 @@ classdef SingleBodyAero < Aerodynamics
         nf                              % number of fins                                                [dimless]
         ltrt                            % top of root to top of tip                                     [m]
         sweepAgl                        % Midchord sweep angle of the fin                               [rad]
+        AsRa                            % Fin aspect ratio                                              []
+        macLead                         % Dist btwn top of root to top of MAC                           [m]
         
         % important Locations
         Xf                              %fin location from nosetip                                      [m]
@@ -61,10 +66,16 @@ classdef SingleBodyAero < Aerodynamics
         k_bf                            % body-fin intereference coeff                                  []
         K                               % experimental coeff for correction of stability derivative     []
         spHt                            % air specific heat ratio
-        
+        finXcpPoly                      % Coefficients for transonic fins Xcp polynomial                []
         
         noseConeShape                   % nosecone shape selection FIXME                                [dimless]
         noseConeParameter               % nosecone parameter                                            [dimless]
+        
+        % Transonic Fins Linear Cna
+        transCnaFinsBreakpoints         %Mach Breakpoints for linear Transonic Cna fins
+        transCnaFins                    %Transonic Cna fins
+        subPt                           %Low mach pt for transonic Cna fins
+        superPt                         %High mach pt for transonic Cna fins
         
         % lookup tables for correction factors
         etaTable                        % table for correction factor used in AOA correction            []
@@ -145,13 +156,14 @@ classdef SingleBodyAero < Aerodynamics
             
             % major fin length
             % TODO: actually compute this!
-            obj.lm = 0.14;
+            obj.lm = 0.19631;
             
             %Calculate cross sectional area of one fin
             obj.A_fxs = obj.tf*obj.lm;
             
-            % Calculate the wetted area of one fin
-            obj.A_fwt = ((obj.lr + obj.lt)/2)*obj.ls; 
+            % Calculate the wetted area of one fin = area of one side of
+            % the fin
+            obj.A_fwt =((obj.lr + obj.lt)/2)*obj.ls; 
             
             %Calculate fin midchord sweep angle
             obj.sweepAgl = atan((obj.ltrt-0.5*obj.lr+0.5*obj.lt)/obj.ls);
@@ -163,15 +175,16 @@ classdef SingleBodyAero < Aerodynamics
             % total horizontal length
             obj.l_TS = 2*(obj.ls + (obj.df/2))*sin(pi/obj.nf);
             
+            
             % Calculate componentwise Xcp and CNalpha
-            obj.Xcp_nose = (obj.ln*obj.Ar - 0.004552288224)/(obj.Ar);       %0.466*obj.ln;                % for ogive nosecone
+            obj.Xcp_nose = (obj.ln*obj.Ar - obj.Vn)/(obj.Ar);       %0.466*obj.ln;                % for ogive nosecone
             obj.Xcp_body = obj.ln + 0.5*obj.lb;                             % correction for lift
             
 %             obj.Xcp_fins = obj.Xf + ...
 %                            (obj.lm*(obj.lr + 2*obj.lt))/(3*(obj.lr + obj.lt)) + ...
 %                            0.6*(obj.lr + obj.lt - ((obj.lr*obj.lt)/(obj.lr+obj.lt)));
                        
-            obj.Xcp_fins = (obj.lw/3)*((obj.lr + 2*obj.lt)/(obj.lr + obj.lt))...
+            obj.Xcp_fins = (obj.ltrt/3)*((obj.lr + 2*obj.lt)/(obj.lr + obj.lt))...
                            + (1/6)*((obj.lr^2 + obj.lt^2 + obj.lr*obj.lt)/(obj.lr + obj.lt));
             
             obj.CNalpha_nose = 2;                       % hmmmm, this seems odd
@@ -192,8 +205,18 @@ classdef SingleBodyAero < Aerodynamics
             % Calculate equivalent diameter Deq for moment damping
             obj.deq = (obj.A_nSide + (obj.l_TR-obj.ln)*2*(obj.dn/2))/(obj.l_TR);
             
+            %Calculate fin aspect ratio
+            obj.AsRa = (2*(obj.ls^2))/obj.A_fwt;
+            
             %Assign Lookup table for nose cone type
 
+            
+            %Calculate Transonic Fins Cna points
+            
+            obj.subPt = (2*pi*((obj.ls^2)/obj.Ar))/(1+sqrt(1+((0.43589*obj.ls^2)/(obj.A_fwt*cos(obj.sweepAgl)))^2));
+            obj.superPt = (obj.A_fwt/obj.Ar)*(1.7889+1.1440*0.125+5.1198*0.125^2);
+            
+            obj.transCnaFins = [obj.subPt obj.superPt];
             
             obj.initialized = true;
         end
