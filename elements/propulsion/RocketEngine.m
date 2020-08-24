@@ -5,7 +5,7 @@ classdef RocketEngine < Element
     properties
         
         % engine location
-        X_GM                                    % engine location from nose tip                     [m]
+        X_GM                                    % engine location (tip of the tank) from nose tip   [m]
         X_CG_full                               % initial location of cg of engine from X_GM        [m]
         
         % other motor params

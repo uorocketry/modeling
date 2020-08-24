@@ -170,7 +170,7 @@ end
 if (seek == "HREV1")  
     % engine locations
     retParams.X_GM = 2.244;                                                             % engine location from nose tip                     [m]
-    retParams.X_CG_full = 0.2745;                                                       % location of cg of engine from X_GM ( to the tank tip) [m]                [m]
+    retParams.X_CG_full = 0.2745;                                                       % location of cg of engine from X_GM (start of engine = tip of the tank ele [m]
 
     % other motor params
     retParams.m_wet = 6.258;                                                            % full mass of motor                                [Kg]
