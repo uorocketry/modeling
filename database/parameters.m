@@ -89,8 +89,10 @@ if (seek == "barrowmanExt")
     retParams.K = 1.1;                                  % experimental coeff for correction of stability derivative         []
     retParams.spHt = 1.4;                               %Specific heat ratio for air
     
-    %Transonic fins Xcp Interpolator coefficients
+    %Interpolator coefficients
     retParams.finXcpPoly = [-0.0768122 0.584042 -1.7367 2.40481 -1.32418 0.493871];     %Coefficients for transonic fins Xcp polynomial                     []
+    retParams.axialPolyLow = [0 0 -22.972 10.2237 0 1];                                 %Coefficients for axial force polynomial btwn 0 and 17 deg AOA      [] 
+    retParams.axialPolyHigh = [0 0 1.2571 -3.5214 1.7576 1.0557];                       %Coefficients for axial force polynomial btwn 17 and 90 deg AOA     []
     
     %Transonic Fins Cna "Table"
     retParams.transCnaFinsBreakpoints = [0.9 1.5];                                      % Mach Breakpoints for fins Cna in transonic region                 [m/s]

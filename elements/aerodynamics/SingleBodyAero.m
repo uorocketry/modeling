@@ -66,7 +66,12 @@ classdef SingleBodyAero < Aerodynamics
         k_bf                            % body-fin intereference coeff                                  []
         K                               % experimental coeff for correction of stability derivative     []
         spHt                            % air specific heat ratio
+       
+        %Polynomial Coefficients
         finXcpPoly                      % Coefficients for transonic fins Xcp polynomial                []
+        axialPolyLow                    % Coefficients for axial force poly AOA 0 to 17 deg             []
+        axialPolyHigh                   % Coefficients for axial force poly AOA 17 to 90 deg            []
+        
         
         noseConeShape                   % nosecone shape selection FIXME                                [dimless]
         noseConeParameter               % nosecone parameter                                            [dimless]
