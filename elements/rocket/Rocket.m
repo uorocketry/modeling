@@ -20,7 +20,7 @@ classdef Rocket < Element
         end
         
         function set.ascent(obj,val)
-            assert(isa(val,'Ascent'),'aero needs to be of type Aero, currently is a %s.',class(val));
+            assert(isa(val,'Ascent'),'ascent needs to be of type Ascent, currently is a %s.',class(val));
             obj.ascent = val;
         end
         

@@ -1,4 +1,4 @@
-elem = SingleBodyAero('Aerov2');
+elem = SingleBodyAscent('Ascentv2');
 elem.initialize();
 
 sim = Simulation(elem);
