@@ -34,6 +34,7 @@ sim.simInput.pressure_atm =         101.3.*ones(size(sim.timeProfile));
 sim.simInput.density_atm =          1.225.*ones(size(sim.timeProfile));
 sim.simInput.windVelocity_B =       constApparaentWindVel_B.*(ones([3 length(sim.timeProfile)]));
 sim.simInput.kinViscosity_atm =     (1.46e-5).*ones(size(sim.timeProfile));
+sim.simInput.Xcg =                  1.815.*ones(size(sim.timeProfile));
 
 sim.simInput.kinematicVelocity_B =  ones([3 length(sim.timeProfile)]);
 sim.simInput.kinematicVelocity_B(1,:) = interp1(kvSimTime_B, kinematicVelX_B, sim.timeProfile);
