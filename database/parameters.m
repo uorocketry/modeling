@@ -215,7 +215,7 @@ if (seek == "HREV1")
     % fuel grain parameters
     retParams.Dfg_inner = 0.04;                                                         % inner diameter of fuel grain (init port diameter) [m]
     retParams.Dfg_outer = 0.134;                                                        % outer diamter of fuel grain                       [m]
-    retParams.Lfg = 0.3;                                                                % length of fuel grain                              [m]
+    retParams.Lfg = 0.5;                                                                % length of fuel grain                              [m]
     retParams.rho_fuel = 930;                                                           % density of paraffin                               [Kg/m^3]
 end
 
