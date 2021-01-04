@@ -3,7 +3,7 @@ elem.initialize();
 
 sim = Simulation(elem);
 
-sim.endTime = 12;
+sim.endTime = 30;
 sim.timeProfile = 0:sim.simElement.timeStep:sim.endTime;
 
 initEuler = [0;(-90)*(pi/180);0];

@@ -15,6 +15,19 @@ if (seek == "Jackalope")
         retParams.emptyCG = 1.7244487;                  % Center of gravity of rocket without fuelgrain                 [m]
 end
 
+if (seek == "AscentTest")
+    
+        %Rocket Properties no Fuel Grain
+        retParams.emptyMass = 14.9624374;               % Mass of rocket without fuelgrain                              [Kg]
+        retParams.emptyCG = 1.7244487;                  % Center of gravity of rocket without fuelgrain                 [m]
+end
+
+if (seek == "Rocktopus")
+    
+        %Rocket Properties no Fuel Grain
+        retParams.emptyMass = 14.9624374;               % Mass of rocket without fuelgrain                              [Kg]
+        retParams.emptyCG = 1.7244487;                  % Center of gravity of rocket without fuelgrain                 [m]
+end
 
 
 %% Parameters for Ascent Elements
@@ -47,9 +60,9 @@ if (seek == "Ascentv2")
      retParams.cg_full= 1.7244487;                   % cg of the rocket
      
      
-     
-    %retParams.launchTowerLength = towerParams.launchTowerLength;
-    %retParams.lauchTowerOrientation = towerParams.lauchTowerOrientation;
+    towerParams = parameters('FSv1');
+    retParams.launchTowerLength = towerParams.launchTowerLength;
+    retParams.lauchTowerOrientation = towerParams.lauchTowerOrientation;
 end 
 
 %% Parameters for Aerodynamic Elements
@@ -308,6 +321,7 @@ if (seek == "Earthv2")
     retParams.windSpeedVarience = 0;                    % normal distribution varience from the reference wind speed for random wind selection      []
     retParams.windAngleVarience = 0;                    % normal distribution varience from the reference wind angle for random wind directions     []
     retParams.temperatureVarience = 0;                  % normal distribution varience from the temperature offset for random temperature selection []
+    retParams.randomSeed        = 0;
     
     % launch location
     retParams.launchLatitude = 2.69;                    % latitude of the launch site                                    [rad]
