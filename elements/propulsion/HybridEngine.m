@@ -33,6 +33,9 @@ classdef HybridEngine < RocketEngine
         Lfg                                                                 % length of fuel grain                              [m]
         rho_fuel                                                            % density of fuel                                   [Kg/m^3]
         initMassFuel                                                        % initial mass of fuel 
+        
+        
+        X_TanktoGrain                                                       % measurement between the tip of the tank to the tip of the grain [m]
     end
     
     methods

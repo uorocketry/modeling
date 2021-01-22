@@ -197,7 +197,7 @@ end
 if (seek == "HREV1")  
     % engine locations
     retParams.X_GM = 2.244;                                                             % engine location from nose tip                     [m]
-    retParams.X_CG_full = 0.2745;                                                       % location of cg of engine from X_GM                [m]
+    retParams.X_CG_full = 0.2745;                                                       % location of cg of engine from X_GM (start of engine = tip of the tank ele [m]
 
     % other motor params
     retParams.m_wet = 6.258;                                                            % full mass of motor                                [Kg]
@@ -230,6 +230,9 @@ if (seek == "HREV1")
     retParams.Dfg_outer = 0.134;                                                        % outer diamter of fuel grain                       [m]
     retParams.Lfg = 0.5;                                                                % length of fuel grain                              [m]
     retParams.rho_fuel = 930;                                                           % density of paraffin                               [Kg/m^3]
+    
+    retParams.X_TanktoGrain = 2;                                                         % measurement between the tip of the tank to the tip of the grain [m]
+    
 end
 
 %% Parameters for Recovery Elements

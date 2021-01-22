@@ -1,4 +1,4 @@
-elem = SingleStageSolidRocketV2('Rocktopus');
+elem = SingleStageHybridRocket('Rocktopus');
 elem.initialize();
 
 sim = Simulation(elem);
