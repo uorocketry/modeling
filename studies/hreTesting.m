@@ -13,7 +13,7 @@ elem.Lfg = 0.5;                         % length of fuel grain                  
 
 sim = Simulation(elem);
 
-sim.endTime = 20;
+sim.endTime = 30;
 sim.timeProfile = 0:sim.simElement.timeStep:sim.endTime;
 
 % setting up inputs (do not change as these are the control conditions)

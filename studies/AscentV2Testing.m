@@ -1,4 +1,4 @@
-elem = SingleBodyAero('Aerov2');
+elem = SingleBodyAscent('Ascentv2');
 elem.initialize();
 
 sim = Simulation(elem);
@@ -21,7 +21,7 @@ sim.simInput.envConstants = sim.timeProfile;
 sim.simInput.flightState = sim.timeProfile;
 sim.simInput.towerVector = sim.timeProfile;
 sim.simInput.rocketEmptyMass = sim.timeProfile;
-sim.simInput.rocketEmptyXcp = sim.timeProfile;
+sim.simInput.rocketEmptyXcg = sim.timeProfile;
 sim.simInput.motorInertias = sim.timeProfile;
 sim.simInput.kinViscosity_atm = sim.timeProfile;
 sim.simInput.airbrakeCmdAngle = sim.timeProfile;

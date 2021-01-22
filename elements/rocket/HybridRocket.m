@@ -1,5 +1,5 @@
-classdef SingleStageSolidRocket < Rocket
-    %SINGLESTAGESOLIDROCKET Summary of this class goes here
+classdef HybridRocket < Rocket
+    %HybridRocket Summary of this class goes here
     %   Detailed explanation goes here
     
     properties
@@ -9,14 +9,14 @@ classdef SingleStageSolidRocket < Rocket
     end
     
     methods
-        function obj = SingleStageSolidRocket(blockchoice)
+        function obj = HybridRocket(blockchoice)
             obj@Rocket(blockchoice);
-            obj.ascent = SingleBodyAscent('Ascentv1');
-            obj.propulsion = SolidMotor('SolidMotor');
+            obj.ascent = SingleBodyAscent('Ascentv2');
+            obj.propulsion = HybridEngine('HREV1');
             obj.recovery = SingleChute('SingleChute');
             obj.sequencer = FSv1('FSv1');
             obj.avionics = AvionicsCharacterization('AvionicsCharacterization');
-            obj.environment = SimpleEnv("Earthv1");
+            obj.environment = SimpleEnv("Earthv2");
             obj.payload = Payload2019();
         end
         

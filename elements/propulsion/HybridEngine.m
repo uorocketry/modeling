@@ -54,7 +54,7 @@ classdef HybridEngine < RocketEngine
             obj.oxiTank.initialize();
             
             % calculate initial mass of fuel
-            obj.initMassFuel = obj.rho_fuel*(((obj.Dfg_outer/2)^2 - ...
+            obj.initMassFuel = obj.rho_fuel*(pi*((obj.Dfg_outer/2)^2 - ...
                                               (obj.Dfg_inner/2)^2)*obj.Lfg);
             
             obj.initialized = true;
