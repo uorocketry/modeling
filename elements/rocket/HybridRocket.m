@@ -16,7 +16,7 @@ classdef HybridRocket < Rocket
             obj.recovery = SingleChute('SingleChute');
             obj.sequencer = FSv1('FSv1');
             obj.avionics = AvionicsCharacterization('AvionicsCharacterization');
-            obj.environment = SimpleEnv("Earthv2");
+            obj.environment = SimpleEnv("Earthv1");
             obj.payload = Payload2019();
         end
         
