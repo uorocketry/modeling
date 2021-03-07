@@ -1,4 +1,4 @@
-function retParams = parameters(seek)
+    function retParams = parameters(seek)
 %PARAMETERS Returns the desired parameters for Simulation Elements
 %   This function will act not only as a function to retrieve parameters
 %   used to initialize Simulation Elements but also as the master parameter
@@ -204,8 +204,8 @@ if (seek == "HREV1")
     retParams.m_dry = 2.835;                                                            % empty mass of motor                               [Kg]
 
     % injector parameters
-    retParams.A_ih = 0.00003918180663;                                                         % area of injector holes                            [m^2]
-    retParams.nIHoles = 19;                                                             % number of injector holes                          [dimless]
+    retParams.A_ih = 2.4476e-6;                                                         % area of injector holes                            [m^2]
+    retParams.nIHoles = 16;                                                             % number of injector holes                          [dimless]
     retParams.injector_Cd = 0.45;                                                       % coefficient of discharge of injector              [dimless]
     
     % paraffin regression model parameters
@@ -370,7 +370,7 @@ if (seek == "nitrousTank1")
     retParams.lengthVP =  0.25; % Length of the vent tube
     
     % initial temperature of nitrous oxide [deg C]
-    retParams.initOxiTemp = 30;
+    retParams.initOxiTemp = 20;
     
     % important constants
     retParams.n2o_pCrit =   7251;   % critical pressure of n2o          [kPa]
