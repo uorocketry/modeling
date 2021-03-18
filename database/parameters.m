@@ -271,7 +271,7 @@ if (seek == "AvionicsCharacterization")
 end 
 
 %% Parameters for Payload Elements
-if (seek == "payload2019")
+if (seek == "payload2021")
 end
 
 %% Parameters for Sequencer Elements
