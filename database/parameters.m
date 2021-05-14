@@ -25,8 +25,8 @@ end
 if (seek == "Rocktopus")
     
         %Rocket Properties no Fuel Grain
-        retParams.emptyMass = 14.9624374;               % Mass of rocket without fuelgrain                              [Kg]
-        retParams.emptyCG = 1.7244487;                  % Center of gravity of rocket without fuelgrain                 [m]
+        retParams.emptyMass = 48;               % Mass of rocket without fuelgrain                              [Kg]
+        retParams.emptyCG = 2.93;                  % Center of gravity of rocket without fuelgrain                 [m]
 end
 
 
