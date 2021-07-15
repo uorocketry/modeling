@@ -4,6 +4,14 @@ classdef HybridEngine < RocketEngine
     
     properties
         oxiTank
+        % Heat Transfer
+        radius_1                                                            % Inside radius of phenolic
+        radius_2                                                            % Inside radius of combustion chamber
+        radius_3                                                            % Outside radius of combustion chamber
+        K_phenolic                                                          % Heat transfer coefficient of phenolic
+        Length                                                              % Length of post combustion chamber
+        K_aluminum                                                          % Heat transfer coefficient of aluminum
+        h_air                                                               % Convective heat transfer coefficient of outside air
         
         % injector parameters
         A_ih                                                                % area of injector holes                            [m^2]

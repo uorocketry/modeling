@@ -195,6 +195,15 @@ if (seek == "SolidMotor")
 end
 
 if (seek == "HREV1")  
+    % Heat transfer - combustion chamber
+    retParams.radius_1 = 0.066025;
+    retParams.radius_2 = 0.073025;
+    retParams.radius_3 = 0.0762;
+    retParams.K_phenolic = 0.005;
+    retParams.Length = 0.1016;
+    retParams.K_aluminum = 205;
+    retParams.h_air = 7;
+    
     % engine locations
     retParams.X_GM = 2.244;                                                             % engine location from nose tip                     [m]
     retParams.X_CG_full = 0.2745;                                                       % location of cg of engine from X_GM (start of engine = tip of the tank ele [m]
