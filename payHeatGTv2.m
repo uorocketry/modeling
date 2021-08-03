@@ -113,7 +113,8 @@ thermalBC(thermalmodel1,'Edge',[1,5],'Temperature',-78);
 %thermalBC(thermalmodel1,'Edge',[10,11],'Temperature',30); 
 %thermalBC(thermalmodel1,'Edge',[1,5],'HeatFlux',qFunc);
 thermalBC(thermalmodel1,'Edge',2,'HeatFlux',netFunc,'ConvectionCoefficient',hcFunc,'AmbientTemperature',30);
-thermalBC(thermalmodel1,'Edge',[3,4],'Temperature',250); % Temperature here will likely be a function of multiple things in the final product (time, altitude, etc.)
+thermalBC(thermalmodel1,'Edge',[3,4],'HeatFlux',netFunc,'ConvectionCoefficient',hcFunc,'AmbientTemperature',30);
+%thermalBC(thermalmodel1,'Edge',[3,4],'Temperature',250); % Temperature here will likely be a function of multiple things in the final product (time, altitude, etc.)
 %thermalBC(thermalmodel1,'Edge',3,'Temperature',30); 
 %thermalBC(thermalmodel1,'Edge',10,'Temperature',23);
 
@@ -123,13 +124,12 @@ thermalBC(thermalmodel1,'Edge',[3,4],'Temperature',250); % Temperature here will
 %thermalBC(thermalmodel,'Edge',6,'Temperature',23);
 %thermalBC(thermalmodel,'Edge',7,'Temperature',23);
 %thermalBC(thermalmodel2,'Edge',1,'Temperature',23); 
-thermalBC(thermalmodel2,'Edge',[2,3],'Temperature',250); 
+%thermalBC(thermalmodel2,'Edge',[2,3],'Temperature',250);
 thermalBC(thermalmodel2,'Edge',1,'HeatFlux',netFunc,'ConvectionCoefficient',hcFunc,'AmbientTemperature',30);
+thermalBC(thermalmodel2,'Edge',[2,3],'HeatFlux',netFunc,'ConvectionCoefficient',hcFunc,'AmbientTemperature',30);
 %thermalBC(thermalmodel1,'Edge',3,'Temperature',30); 
 %thermalBC(thermalmodel2,'Edge',[12,13],'Temperature',30); 
-%% Compute Transient Models
-
-%Solve the first model
+%% Solve the first model
 tfinal1 = t_s;
 tlist = 0:10:tfinal1;
 %thermalIC(thermalmodel1,-78,'face',1);%ICs set to -78 C at the payload layer. This would represent the entirity of our 
@@ -143,7 +143,7 @@ T_func = @(locations) interpolateTemperature(result1,locations.x,locations.y,len
 mpaFace = findThermalProperties(thermalmodel1.MaterialProperties,'Face',[1,2,3]);
 mpaFace2 = findThermalProperties(thermalmodel2.MaterialProperties,'Face',[1,2,3,4]);
 
-%% Solve the second mode
+%% Solve the second model
 
 tfinal2 = 80000;
 tlist2 = 0:25:tfinal2;
@@ -173,7 +173,6 @@ for i=1:length(tlist2)
     drawnow
     pause(0.1)
 end
-
 
 %% Functions 
 
