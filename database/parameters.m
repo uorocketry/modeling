@@ -56,8 +56,8 @@ if (seek == "Ascentv2")
                                                         % inertia matrix of rocket (flight config)                      [Kg*m^2]
                                                    
                                                         
-     retParams.m_wet = 6.258;                        % full mass of propellents
-     retParams.cg_full= 1.7244487;                   % cg of the rocket
+     retParams.m_wet = 6.258;                        % full mass of propellents - not used in rocktopus sim
+     retParams.cg_full= 1.7244487;                   % cg of the rocket - not used in rocktopus sim
      
      
     towerParams = parameters('FSv1');

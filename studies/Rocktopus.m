@@ -21,6 +21,7 @@ elem.ascent.aerodynamics.ltrt = 0.11;                              % Top of root
 elem.ascent.aerodynamics.macLead = 0.04921;                        % Dist btwn top of root to top of MAC                           [m]
 
 
+
 sim = Simulation(elem);
 
 sim.endTime = 1500;
