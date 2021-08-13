@@ -1,11 +1,14 @@
 %% Initialize model and geometry
-% Break our model in two parts. The first part will model the temperature
-% distribution throughout the rocket at the payload region while all the
-% dry ice is subliminating. The second part of the model will consider what
-% happens after the dry ice finishes subliminating. 
+% Break our model in three parts. The first part will model the temperature
+% distribution throughout the rocket at the payload region while the
+% dry ice is subliminating and the rocket is in flight. The second and
+% third parts of the model calculates the temperature distribution
+% throughout the payload section of the rocket when, respectively, the
+% rocket is in flight and the rocket isn't in flight. 
 
 thermalmodel1 = createpde('thermal', 'transient');
 thermalmodel2 = createpde('thermal', 'transient');
+thermalmodel3 = createpde('thermal', 'transient');
 
 % It'll suffice to do things axisymmetrically like before. Create as many
 % rectangles as they are layers like so. 
@@ -23,9 +26,11 @@ g2 = decsg(gdm2);
 
 geometryFromEdges(thermalmodel1,g1);
 geometryFromEdges(thermalmodel2,g2);
+geometryFromEdges(thermalmodel3,g2);
 
 generateMesh(thermalmodel1,'Hmax',0.005);
 generateMesh(thermalmodel2,'Hmax',0.005);
+generateMesh(thermalmodel3,'Hmax',0.005);
 
 %Plot out the geometry
 figure 
@@ -75,8 +80,10 @@ t_s = (m_0)/mdot; % End of sublimination time
 
 
 % Environmental properties
-h_c = 950; %W/m^2, convective heat coefficient for air. This is probably wrong. 
-sb_const = 5.6703e-8; % W/m^2* C^4
+h_c = 950; %W/m^2, convective heat coefficient for air assuming forced convection. This is probably wrong. 
+h_n = (2.5+25)/2; %W/m^2, covective heat coefficient for air assuming natural convection. This is taken as an average 
+                   %of the supposed maximum and minimum values of the coefficient.
+sb_const = 5.6703e-8;% W/m^2* C^4
 T_sun = 5526.85; % C
 R_sun = 696340e3; % radius of the sun, m
 D_from_Sun = 152100000e3; % earth-sun distance, m
@@ -88,6 +95,7 @@ radiative_heat_flux =absorb_factor*orbital_eccentricity*cos((34*pi)/180)*solar_f
 % Create coefficient functions to accomodate axisymmetric approximations
 %qFunc = @(region,state) (q*region.y);% The internal heat generation term is in W/m^3
 hcFunc = @(region,state) (h_c*region.y);
+hnFunc = @(region,state) (h_n*region.y);
 netFunc = @(region,state)(radiative_heat_flux)*region.y; 
 %Net heat of rocket surface when accounting for 
 %radiation and convection
@@ -102,58 +110,106 @@ thermalProperties(thermalmodel1,'ThermalConductivity',@kfun, ...
 thermalProperties(thermalmodel2,'ThermalConductivity',@kfun, ...
                                         'MassDensity',@mfun, ...
                                         'SpecificHeat',@cfun);
+                                    
+thermalProperties(thermalmodel3,'ThermalConductivity',@kfun, ...
+                                        'MassDensity',@mfun, ...
+                                        'SpecificHeat',@cfun);      
+                                    
  
-%% Specify boundary conditions
-% Boundary conditions between subdomains are "not needed" in finite
-% element method (circa 2013) ... not for our case, anyhow. 
-
-%internalHeatSource(thermalmodel2,qFunc,'Face',1);
+%% Specify boundary conditions for the first part of the model 
 
 thermalBC(thermalmodel1,'Edge',[1,5],'Temperature',-78);
-%thermalBC(thermalmodel1,'Edge',[10,11],'Temperature',30); 
-%thermalBC(thermalmodel1,'Edge',[1,5],'HeatFlux',qFunc);
 thermalBC(thermalmodel1,'Edge',2,'HeatFlux',netFunc,'ConvectionCoefficient',hcFunc,'AmbientTemperature',30);
 thermalBC(thermalmodel1,'Edge',[3,4],'HeatFlux',netFunc,'ConvectionCoefficient',hcFunc,'AmbientTemperature',30);
-%thermalBC(thermalmodel1,'Edge',[3,4],'Temperature',250); % Temperature here will likely be a function of multiple things in the final product (time, altitude, etc.)
-%thermalBC(thermalmodel1,'Edge',3,'Temperature',30); 
-%thermalBC(thermalmodel1,'Edge',10,'Temperature',23);
 
-%thermalBC(thermalmodel,'Edge',1,'Temperature',30); 
-%thermalBC(thermalmodel,'Edge',4,'Temperature',23);
-%thermalBC(thermalmodel,'Edge',5,'Temperature',23);
-%thermalBC(thermalmodel,'Edge',6,'Temperature',23);
-%thermalBC(thermalmodel,'Edge',7,'Temperature',23);
-%thermalBC(thermalmodel2,'Edge',1,'Temperature',23); 
-%thermalBC(thermalmodel2,'Edge',[2,3],'Temperature',250);
+%% Specify boundary conditions for the second part of the model 
+
 thermalBC(thermalmodel2,'Edge',1,'HeatFlux',netFunc,'ConvectionCoefficient',hcFunc,'AmbientTemperature',30);
 thermalBC(thermalmodel2,'Edge',[2,3],'HeatFlux',netFunc,'ConvectionCoefficient',hcFunc,'AmbientTemperature',30);
-%thermalBC(thermalmodel1,'Edge',3,'Temperature',30); 
-%thermalBC(thermalmodel2,'Edge',[12,13],'Temperature',30); 
-%% Solve the first model
+
+%% Specify boundary conditions for the third part of the model 
+
+thermalBC(thermalmodel3,'Edge',1,'HeatFlux',netFunc,'ConvectionCoefficient',hcFunc,'AmbientTemperature',30);
+thermalBC(thermalmodel3,'Edge',[2,3],'HeatFlux',netFunc,'ConvectionCoefficient',hnFunc,'AmbientTemperature',30);
+
+%% Solve the first part
+
 tfinal1 = t_s;
 tlist = 0:10:tfinal1;
-%thermalIC(thermalmodel1,-78,'face',1);%ICs set to -78 C at the payload layer. This would represent the entirity of our 
-%layer being filled with dry ice. 
 thermalIC(thermalmodel1,0,'face',[1,2,3,4]);
 thermalmodel1.SolverOptions.ReportStatistics = 'on';
 result1 = solve(thermalmodel1,tlist);
 T = result1.Temperature;
 T_func = @(locations) interpolateTemperature(result1,locations.x,locations.y,length(tlist)); 
-%initfun = @(locations)locations.x.^2 + locations.y.^2;
-mpaFace = findThermalProperties(thermalmodel1.MaterialProperties,'Face',[1,2,3]);
-mpaFace2 = findThermalProperties(thermalmodel2.MaterialProperties,'Face',[1,2,3,4]);
 
-%% Solve the second model
 
-tfinal2 = 80000;
-tlist2 = 0:25:tfinal2;
+%% Solve the second part
+
+tfinal2 = tfinal1+500; % Ideally, this time would reflect the amount of time 
+% it would take for the rocket to touch down from the point in its trajectory that all of its dry ice has subliminated
+tlist2 = tfinal1:10:tfinal2;
 thermalIC(thermalmodel2,-78,'face',5);
 thermalIC(thermalmodel2, T_func, 'face',[1,2,3,4]);
 thermalmodel2.SolverOptions.ReportStatistics = 'on';
 result2 = solve(thermalmodel2,tlist2);
 T2 = result2.Temperature;
+T2_func = @(locations) interpolateTemperature(result2,locations.x,locations.y,length(tlist2)); 
 
-%% Plot the solution
+
+%% Solve the third part
+
+tfinal3 = tfinal2+80000; % The amount of time from the rocket touching down to its recovery. 
+tlist3 = tfinal2:10:tfinal3;
+thermalIC(thermalmodel3, T2_func, 'face',[1,2,3,4,5]);
+thermalmodel3.SolverOptions.ReportStatistics = 'on';
+result3 = solve(thermalmodel3,tlist3);
+T3 = result3.Temperature;
+
+
+%% Returns the time at the payload in which the temperature is greater than or equal to 4 degrees celcius. 
+
+T_func_alt = @(x,y,t) interpolateTemperature(result1,x,y,t);
+T2_func_alt = @(x,y,t) interpolateTemperature(result2,x,y,t); 
+T3_func_alt = @(x,y,t) interpolateTemperature(result3,x,y,t); 
+
+
+for i=1:length(tlist)
+        if (T_func_alt(0,0.02,i) >= 4)
+            disp('Temperature exceeds 4 degrees celsius at a time of');
+            disp(tlist(i));
+            disp('seconds');
+            break;
+        end
+end
+
+for i=1:length(tlist2)
+          if (T2_func_alt(0,0.02,i) >= 4)
+            disp('Temperature exceeds 4 degrees celsius at a time of');
+            disp(tlist2(i));
+            disp('seconds');
+            break;
+          end
+end
+
+for i=1:length(tlist3)
+          if (T3_func_alt(0,0.02,i) >= 4)
+            disp('Temperature exceeds 4 degrees celsius at a time of');
+            disp(tlist3(i));
+            disp('seconds');
+            break;
+          else
+              if (i==length(tlist3))
+             disp('Time at which payload temperature exceeds 4 degrees is beyond calculated range. Final temperature is..');
+             disp(T3_func_alt(0,0.02,i));
+             disp('At a time of');
+             disp(tlist3(i));
+             disp('seconds');
+              end
+          end
+end
+       
+        
+%% Plot the solution to the first part of the model
 
 figure; 
 for i=1:(length(tlist))
@@ -164,11 +220,21 @@ for i=1:(length(tlist))
     pause(0.1)
 end
 
-%% Plot the solution after the dry ice finishes subliminating. 
+%% Plot the solution to the second part of the model
 
 for i=1:length(tlist2)
     pdeplot(thermalmodel2,'XYData',T2(:,i),'Contour','on','ColorMap','hot'); 
     title(sprintf('Transient Temperature at Final Time (%g seconds)',tlist2(i)));
+    axis equal
+    drawnow
+    pause(0.1)
+end
+
+%% Plot the solution to the third part of the model
+
+for i=1:length(tlist3)
+    pdeplot(thermalmodel3,'XYData',T3(:,i),'Contour','on','ColorMap','hot'); 
+    title(sprintf('Transient Temperature at Final Time (%g seconds)',tlist3(i)));
     axis equal
     drawnow
     pause(0.1)
