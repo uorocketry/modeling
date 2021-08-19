@@ -129,7 +129,7 @@ thermalBC(thermalmodel2,'Edge',[2,3],'HeatFlux',netFunc,'ConvectionCoefficient',
 
 %% Specify boundary conditions for the third part of the model 
 
-thermalBC(thermalmodel3,'Edge',1,'HeatFlux',netFunc,'ConvectionCoefficient',hcFunc,'AmbientTemperature',30);
+thermalBC(thermalmodel3,'Edge',1,'HeatFlux',netFunc,'ConvectionCoefficient',hnFunc,'AmbientTemperature',30);
 thermalBC(thermalmodel3,'Edge',[2,3],'HeatFlux',netFunc,'ConvectionCoefficient',hnFunc,'AmbientTemperature',30);
 
 %% Solve the first part
@@ -159,56 +159,33 @@ T2_func = @(locations) interpolateTemperature(result2,locations.x,locations.y,le
 %% Solve the third part
 
 tfinal3 = tfinal2+80000; % The amount of time from the rocket touching down to its recovery. 
-tlist3 = tfinal2:10:tfinal3;
+tlist_rec = tfinal2:10:tfinal3;
 thermalIC(thermalmodel3, T2_func, 'face',[1,2,3,4,5]);
 thermalmodel3.SolverOptions.ReportStatistics = 'on';
-result3 = solve(thermalmodel3,tlist3);
+result3 = solve(thermalmodel3,tlist_rec);
 T3 = result3.Temperature;
-
 
 %% Returns the time at the payload in which the temperature is greater than or equal to 4 degrees celcius. 
 
-T_func_alt = @(x,y,t) interpolateTemperature(result1,x,y,t);
-T2_func_alt = @(x,y,t) interpolateTemperature(result2,x,y,t); 
-T3_func_alt = @(x,y,t) interpolateTemperature(result3,x,y,t); 
+T3_func = @(x,y,t) interpolateTemperature(result3,x,y,t); 
 
-
-for i=1:length(tlist)
-        if (T_func_alt(0,0.02,i) >= 4)
+for i=1:length(tlist_rec)
+          if (T3_func(0,0.02,i) >= 4)
             disp('Temperature exceeds 4 degrees celsius at a time of');
-            disp(tlist(i));
-            disp('seconds');
-            break;
-        end
-end
-
-for i=1:length(tlist2)
-          if (T2_func_alt(0,0.02,i) >= 4)
-            disp('Temperature exceeds 4 degrees celsius at a time of');
-            disp(tlist2(i));
-            disp('seconds');
-            break;
-          end
-end
-
-for i=1:length(tlist3)
-          if (T3_func_alt(0,0.02,i) >= 4)
-            disp('Temperature exceeds 4 degrees celsius at a time of');
-            disp(tlist3(i));
-            disp('seconds');
+            disp(tlist_rec(i)/3600);
+            disp('hours');
             break;
           else
-              if (i==length(tlist3))
+              if (i==length(tlist_rec))
              disp('Time at which payload temperature exceeds 4 degrees is beyond calculated range. Final temperature is..');
-             disp(T3_func_alt(0,0.02,i));
+             disp(T3_func(0,0.02,i));
              disp('At a time of');
-             disp(tlist3(i));
-             disp('seconds');
+             disp(tlist_rec(i)/3600);
+             disp('hours');
               end
           end
 end
-       
-        
+  
 %% Plot the solution to the first part of the model
 
 figure; 
@@ -232,9 +209,9 @@ end
 
 %% Plot the solution to the third part of the model
 
-for i=1:length(tlist3)
+for i=1:length(tlist_rec)
     pdeplot(thermalmodel3,'XYData',T3(:,i),'Contour','on','ColorMap','hot'); 
-    title(sprintf('Transient Temperature at Final Time (%g seconds)',tlist3(i)));
+    title(sprintf('Transient Temperature at Final Time (%g seconds)',tlist_rec(i)));
     axis equal
     drawnow
     pause(0.1)
